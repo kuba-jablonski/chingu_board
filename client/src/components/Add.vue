@@ -1,7 +1,7 @@
 <template>
     <div class="container form-group">
         <h1>Add your project!</h1>
-        <form action="/add" method="POST">
+        <form>
             <div class="form-group">
                 <label class="col-sm-2 col-form-label">Title</label>
                 <input type="text" class="form-control" name="blog[title]" placeholder="Enter the title">
@@ -18,3 +18,11 @@
         </form>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        // agree on form data
+    }
+}
+</script>
