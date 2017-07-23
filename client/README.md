@@ -1,6 +1,6 @@
 # chingu-board-client
 
-> front end for the chongu-board project
+> front end for the chingu-board project
 
 ## Build Setup
 
