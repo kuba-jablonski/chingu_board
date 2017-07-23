@@ -30,7 +30,7 @@ export default {
     methods: {
         register() {
             // !!!
-            this.$http.get('http://localhost:3000/api/test').then(res => console.log(res));
+            this.$http.get('/api/test').then(res => console.log(res));
         }
     }
 }
