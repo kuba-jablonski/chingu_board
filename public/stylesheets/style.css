@@ -1,0 +1,67 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+section {
+    color: white;
+}
+
+.splash, .mission {
+    background-color: deepskyblue;
+    
+}
+
+.splash {
+    padding: 50px;
+    height: 500px;
+
+    font-size: 1.5em;
+}
+
+.navbar, .splash h1, button {
+    text-transform: uppercase;
+}
+
+.projects-list, .splash, footer {
+    text-align: center;
+}
+
+.splash button {
+    margin: 20px;
+}
+
+button {
+    height: 50px;
+}
+
+.projects-list h3 {
+    color: deepskyblue;
+}
+
+h4 {
+    color: lightgray;
+}
+
+.mission {
+    margin-top: 50px;
+    font-size: 1.2em;
+}
+
+footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+i {
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 1em;
+    padding: 15px;
+}
