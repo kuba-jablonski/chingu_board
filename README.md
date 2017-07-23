@@ -1,5 +1,8 @@
 # chingu-board :bear:
 
+This is a simple Node "skeleton", using Express and Mongo, for the **Bears Team 11**'s Tier 3 project. </br>
+This is a work in progress, the code is a bit messy and I apologize for that, it will get polished.
+
 ## Required: node, npm, and mongo.
 
 1. Install the dependencies with ```npm install``` in the directory.
