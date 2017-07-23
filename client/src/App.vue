@@ -1,3 +1,25 @@
+<template>
+    <div>
+        <app-nav></app-nav>
+        <router-view></router-view>
+        <app-footer></app-footer>
+    </div>
+</template>
+
+<script>
+import Nav from './components/Nav.vue';
+import Footer from './components/Footer.vue';
+import Home from './components/Home.vue';
+
+export default {
+    components: {
+        appNav: Nav,
+        appFooter: Footer
+    }
+}
+</script>
+
+<style>
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
@@ -11,9 +33,9 @@ section {
     color: white;
 }
 
-.splash, .mission {
+.splash,
+.mission {
     background-color: deepskyblue;
-    
 }
 
 .splash {
@@ -23,11 +45,15 @@ section {
     font-size: 1.5em;
 }
 
-.navbar, .splash h1, button {
+.navbar,
+.splash h1,
+button {
     text-transform: uppercase;
 }
 
-.projects-list, .splash, footer {
+.projects-list,
+.splash,
+footer {
     text-align: center;
 }
 
@@ -65,3 +91,4 @@ i {
     font-size: 1em;
     padding: 15px;
 }
+</style>
