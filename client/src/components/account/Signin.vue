@@ -2,15 +2,33 @@
     <div class="container">
         <div class="row">
             <h1>SIGN IN</h1>
-            <form action="/login" method="POST">
+            <form>
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="username" required>
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="password" name="password" placeholder="password" required>
                 </div>
-                <button class="btn btn-lg btn-default btn-block">Login</button>
+                <button @click.prevent="logIn" class="btn btn-lg btn-default btn-block">Login</button>
             </form>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            form: {
+                username: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        logIn() {
+            // setup http
+        }
+    }
+}
+</script>
