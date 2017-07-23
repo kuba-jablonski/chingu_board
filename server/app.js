@@ -42,6 +42,16 @@ const User = mongoose.model('User', userSchema);
 //       ROUTES             
 //====================
 
+// allow CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+// test route to check if requests work
+app.get('/api/test', (req, res) => res.send('All is well!'));
+
 //-----HOMEPAGE
 
 app.get('/', (req, res) => {

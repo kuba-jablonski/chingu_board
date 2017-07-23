@@ -29,7 +29,8 @@ export default {
     },
     methods: {
         register() {
-            // setup http
+            // !!!
+            this.$http.get('http://localhost:3000/api/test').then(res => console.log(res));
         }
     }
 }

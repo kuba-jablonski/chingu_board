@@ -16,6 +16,7 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -27,7 +28,8 @@ export default {
     },
     methods: {
         logIn() {
-            // setup http
+            // !!!
+            this.$http.get('http://localhost:3000/api/test').then(res => console.log(res));
         }
     }
 }
