@@ -10,7 +10,7 @@ const app = express();
 //==============
 
 mongoose.createConnection('mongodb://localhost/');
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
 

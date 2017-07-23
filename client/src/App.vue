@@ -20,6 +20,7 @@ export default {
 </script>
 
 <style>
+/* needs moving to Home local scope */
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
