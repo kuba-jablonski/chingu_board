@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import App from './App.vue';
 import routes from './routes';
+import store from './store/store';
 
 // temporary setup
 Vue.prototype.$http = axios.create({
@@ -20,5 +21,6 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App)
 });
