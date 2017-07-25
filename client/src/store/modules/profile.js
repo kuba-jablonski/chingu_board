@@ -14,6 +14,16 @@ const state = {
     }
 };
 
+const mutations = {
+    TOGGLE_EDIT(state, payload) {
+        state.edit[payload.component] = payload.active;
+    },
+    ABOUT_ME_EDIT(state, aboutMe) {
+        state.user.aboutMe = aboutMe;
+    }
+}
+
 export default {
-    state
+    state,
+    mutations
 };

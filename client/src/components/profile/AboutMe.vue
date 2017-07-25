@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.state.profile.edit.aboutMe = true">edit</a>
+                <a @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">edit</a>
             </div>
         </div>
         <br>
