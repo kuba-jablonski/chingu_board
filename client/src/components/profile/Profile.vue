@@ -3,7 +3,7 @@
         <div class="box">
             <h2 class="title is-3">Your Profile</h2>
             <component :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
-            <app-skills></app-skills>
+            <component :is="edit.skills ? 'app-skills-edit' : 'app-skills'"></component>
             <div class="section">
                 <div class="level is-mobile">
                     <div class="level-left">
@@ -38,12 +38,14 @@
 import AboutMe from './AboutMe.vue';
 import AboutMeEdit from './AboutMeEdit.vue';
 import Skills from './Skills.vue';
+import SkillsEdit from './SkillsEdit.vue';
 
 export default {
     components: {
         appAboutMe: AboutMe,
         appAboutMeEdit: AboutMeEdit,
-        appSkills: Skills
+        appSkills: Skills,
+        appSkillsEdit: SkillsEdit
     },
     computed: {
         user() {

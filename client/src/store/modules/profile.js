@@ -30,6 +30,9 @@ const mutations = {
     },
     ABOUT_ME_EDIT(state, aboutMe) {
         state.user.aboutMe = aboutMe;
+    },
+    SKILLS_EDIT(state, skills) {
+        state.user.skills = skills;
     }
 }
 

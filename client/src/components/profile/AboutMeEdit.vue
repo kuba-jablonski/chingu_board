@@ -65,7 +65,7 @@ export default {
         }
     },
     created() {
-        this.aboutMe = this.$store.state.profile.user.aboutMe
+        this.aboutMe = JSON.parse(JSON.stringify(this.$store.state.profile.user.aboutMe));
     }
 }
 </script>
