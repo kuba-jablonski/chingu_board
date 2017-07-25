@@ -19,7 +19,7 @@
             </div>
             <div class="field is-grouped">
                 <p class="control">
-                    <button class="button">
+                    <button @click="register" class="button">
                         Register
                     </button>
                 </p>
@@ -59,7 +59,7 @@ export default {
     methods: {
         register() {
             // !!!
-            this.$http.get('/api/test').then(res => console.log(res));
+            this.$store.commit('AUTH', true);
         }
     }
 }

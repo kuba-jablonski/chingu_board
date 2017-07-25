@@ -14,20 +14,35 @@
     
         <div :class="{'is-active': showDropdown}" id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-                <router-link to="/projects" tag="a" class="navbar-item " href="http://bulma.io/">
+                <router-link to="/projects" tag="a" class="navbar-item ">
                     Explore Projects
-                </router link>
+                </router-link>
+                <a v-if="authed" class="navbar-item">
+                    My Projects
+                </a>
+                <a v-if="authed" class="navbar-item">
+                    My Applications
+                </a>
             </div>
     
             <div class="navbar-end">
                 <div class="navbar-item">
+                    <a v-if="authed" class="navbar-item">
+                        Profile
+                    </a>
                     <p class="control">
-                        <router-link to="signin" tag="a" class="button">
+                        <router-link v-if="!authed" to="signin" tag="a" class="button">
                             <span class="icon">
                                 <i class="fa fa-sign-in"></i>
                             </span>
                             <span>Login</span>
                         </router-link>
+                        <a v-if="authed" @click="logOut" class="button">
+                            <span class="icon">
+                                <i class="fa fa-sign-in"></i>
+                            </span>
+                            <span>Logout</span>
+                        </a>
                     </p>
                 </div>
             </div>
@@ -40,6 +55,16 @@ export default {
     data() {
         return {
             showDropdown: false
+        }
+    },
+    computed: {
+        authed() {
+            return this.$store.state.authenticated;
+        }
+    },
+    methods: {
+        logOut() {
+            this.$store.commit('AUTH', false);
         }
     }
 }

@@ -19,7 +19,7 @@
             </div>
             <div class="field is-grouped">
                 <p class="control">
-                    <button class="button">
+                    <button @click="logIn" class="button">
                         Login
                     </button>
                 </p>
@@ -60,7 +60,7 @@ export default {
     methods: {
         logIn() {
             // !!!
-            this.$http.get('/api/test').then(res => console.log(res));
+            this.$store.commit('AUTH', true);
         }
     }
 }
