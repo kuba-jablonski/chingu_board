@@ -5,15 +5,14 @@
                 CHINGU BOARD PROJECT
             </a>
     
-            <div class="navbar-burger burger" data-target="navMenu">
+            <div @click="showDropdown = !showDropdown" :class="{'is-active': showDropdown}" class="navbar-burger burger" data-target="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
     
-        <div id="navMenu" class="navbar-menu">
-    
+        <div :class="{'is-active': showDropdown}" id="navMenu" class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item " href="http://bulma.io/">
                     Explore Projects
@@ -35,3 +34,13 @@
         </div>
     </nav>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            showDropdown: false
+        }
+    }
+}
+</script>
