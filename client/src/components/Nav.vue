@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar ">
         <div class="navbar-brand">
-            <a class="navbar-item">
+            <router-link to="/" tag="a" class="navbar-item">
                 CHINGU BOARD PROJECT
-            </a>
+            </router-link>
     
             <div @click="showDropdown = !showDropdown" :class="{'is-active': showDropdown}" class="navbar-burger burger" data-target="navMenu">
                 <span></span>
@@ -14,9 +14,9 @@
     
         <div :class="{'is-active': showDropdown}" id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item " href="http://bulma.io/">
+                <router-link to="/projects" tag="a" class="navbar-item " href="http://bulma.io/">
                     Explore Projects
-                </a>
+                </router link>
             </div>
     
             <div class="navbar-end">
