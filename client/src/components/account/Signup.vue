@@ -1,20 +1,49 @@
 <template>
-    <div class="container">
-        <div class="row">
-    
-            <h1>SIGN UP</h1>
-    
-            <form>
-                <div class="form-group">
-                    <input v-model="form.username" class="form-control" type="text" name="username" placeholder="username" required>
-                </div>
-                <div class="form-group">
-                    <input v-model="form.password"  class="form-control" type="password" name="password" placeholder="password" required>
-                </div>
-                <button @click.prevent="register" class="btn btn-lg btn-default btn-block">Register</button>
-            </form>
+    <section class="section container is-flex">
+        <div class="box">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input v-model="form.username" class="input" type="text" placeholder="Username">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input v-model="form.password" class="input" type="password" placeholder="Password">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field is-grouped">
+                <p class="control">
+                    <button class="button">
+                        Register
+                    </button>
+                </p>
+                    <button class="button">
+                        Cancel
+                    </button>
+            </div>
+            <hr>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-fullwidth">
+                        Sign in with Google
+                    </button>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-fullwidth">
+                        Sign in with Github
+                    </button>
+                </p>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -35,3 +64,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.is-flex {
+    justify-content: center;
+}
+</style>

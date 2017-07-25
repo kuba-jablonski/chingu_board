@@ -22,12 +22,12 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <p class="control">
-                        <a class="button">
+                        <router-link to="signin" tag="a" class="button">
                             <span class="icon">
                                 <i class="fa fa-sign-in"></i>
                             </span>
                             <span>Login</span>
-                        </a>
+                        </router-link>
                     </p>
                 </div>
             </div>
