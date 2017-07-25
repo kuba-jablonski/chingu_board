@@ -22,7 +22,9 @@
 <script>
 export default {
     data() {
-        // agree on form data
+        return {
+            // agree on form data
+        }
     }
 }
 </script>
