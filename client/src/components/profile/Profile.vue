@@ -3,32 +3,7 @@
         <div class="box">
             <h2 class="title is-3">Your Profile</h2>
             <component :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
-            <div class="section">
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <p class="subtitle is-5">Skills</p>
-                        </div>
-                    </div>
-                    <div class="level-right">
-                        <a>edit</a>
-                    </div>
-                </div>
-                <div class="is-flex">
-                    <div class="skill-item">
-                        Javascript
-                        <span class="tag">
-                            Beginner
-                        </span>
-                    </div>
-                    <div>
-                        HTML
-                        <span class="tag">
-                            Advanced
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <app-skills></app-skills>
             <div class="section">
                 <div class="level is-mobile">
                     <div class="level-left">
@@ -62,11 +37,13 @@
 <script>
 import AboutMe from './AboutMe.vue';
 import AboutMeEdit from './AboutMeEdit.vue';
+import Skills from './Skills.vue';
 
 export default {
     components: {
         appAboutMe: AboutMe,
-        appAboutMeEdit: AboutMeEdit
+        appAboutMeEdit: AboutMeEdit,
+        appSkills: Skills
     },
     computed: {
         user() {
@@ -81,7 +58,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.skill-item,
 .link-item {
     margin-right: 10px;
 }
