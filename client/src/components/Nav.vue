@@ -27,9 +27,9 @@
     
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a v-if="authed" class="navbar-item">
+                    <router-link v-if="authed" to="/profile" tag="a" class="navbar-item">
                         Profile
-                    </a>
+                    </router-link>
                     <p class="control">
                         <router-link v-if="!authed" to="signin" tag="a" class="button">
                             <span class="icon">
