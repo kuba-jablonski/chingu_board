@@ -2,7 +2,7 @@
     <section class="section container">
         <div class="box">
             <h2 class="title is-3">Your Profile</h2>
-            <app-about-me :aboutMe="user.aboutMe"></app-about-me>
+            <component :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
             <div class="section">
                 <div class="level is-mobile">
                     <div class="level-left">
@@ -61,23 +61,19 @@
 
 <script>
 import AboutMe from './AboutMe.vue';
+import AboutMeEdit from './AboutMeEdit.vue';
 
 export default {
     components: {
-        appAboutMe: AboutMe
-    },
-    data() {
-        return {
-            edit: {
-                aboutMe: false,
-                skills: false,
-                links: false
-            }
-        }
+        appAboutMe: AboutMe,
+        appAboutMeEdit: AboutMeEdit
     },
     computed: {
         user() {
             return this.$store.state.profile.user;
+        },
+        edit() {
+            return this.$store.state.profile.edit;
         }
     }
 }

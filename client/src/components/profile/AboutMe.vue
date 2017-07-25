@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a>edit</a>
+                <a @click="$store.state.profile.edit.aboutMe = true">edit</a>
             </div>
         </div>
         <br>
@@ -24,8 +24,10 @@
 
 <script>
 export default {
-    props: ['aboutMe'],
     computed: {
+        aboutMe() {
+            return this.$store.state.profile.user.aboutMe;
+        },
         fullname() {
             return this.aboutMe.firstName + ' ' + this.aboutMe.lastName;
         }
