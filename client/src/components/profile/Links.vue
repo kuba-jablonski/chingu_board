@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a>edit</a>
+                <a @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">edit</a>
             </div>
         </div>
         <div class="is-flex">

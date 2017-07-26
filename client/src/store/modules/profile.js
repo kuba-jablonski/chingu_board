@@ -37,6 +37,9 @@ const mutations = {
     },
     SKILLS_EDIT(state, skills) {
         state.user.skills = skills;
+    },
+    LINKS_EDIT(state, links) {
+        state.user.links = links;
     }
 }
 
