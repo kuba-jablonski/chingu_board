@@ -27,9 +27,13 @@
     
             <div class="navbar-end">
                 <div class="navbar-item">
+                    <router-link v-if="authed" to="/project/create" tag="a" class="navbar-item">
+                        Create a New Project
+                    </router-link>
                     <router-link v-if="authed" to="/profile" tag="a" class="navbar-item">
                         Profile
                     </router-link>
+    
                     <p class="control">
                         <router-link v-if="!authed" to="signin" tag="a" class="button">
                             <span class="icon">

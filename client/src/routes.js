@@ -4,6 +4,7 @@ import Signin from './components/account/Signin.vue';
 import Signup from './components/account/Signup.vue';
 import Add from './components/Add.vue';
 import Profile from './components/profile/Profile.vue';
+import ProjectCreate from './components/project/ProjectCreate.vue';
 
 export default [
     { path: '', component: Home},
@@ -11,5 +12,6 @@ export default [
     { path: '/signin', component: Signin },
     { path: '/signup', component: Signup },
     { path: '/add', component: Add },
-    { path: '/profile', component: Profile }
+    { path: '/profile', component: Profile },
+    { path: '/project/create', component: ProjectCreate }
 ];

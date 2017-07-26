@@ -27,9 +27,6 @@ export default {
         appLinksEdit: LinksEdit
     },
     computed: {
-        user() {
-            return this.$store.state.profile.user;
-        },
         edit() {
             return this.$store.state.profile.edit;
         }
