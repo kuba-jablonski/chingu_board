@@ -1,7 +1,7 @@
 <template>
     <section class="section container">
         <div class="tile is-ancestor">
-            <router-link :project="project" :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-6">
+            <router-link :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-6">
                 <article class="tile is-child box">
                     <div class="level">
                         <div class="level-item">
