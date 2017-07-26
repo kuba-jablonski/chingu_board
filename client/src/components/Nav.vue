@@ -35,7 +35,7 @@
                     </router-link>
     
                     <p class="control">
-                        <router-link v-if="!authed" to="signin" tag="a" class="button">
+                        <router-link v-if="!authed" to="/signin" tag="a" class="button">
                             <span class="icon">
                                 <i class="fa fa-sign-in"></i>
                             </span>
