@@ -15,6 +15,10 @@ const state = {
             MongoDB: 'Intermediate',
             Design: 'Beginner',
             React: 'Intermediate'
+        },
+        links: {
+            portfolio: 'https://wireframe.cc/OoTTes',
+            github: 'https://github.com/kuba-jablonski/chingu-board'
         }
     },
     edit: {
