@@ -15,7 +15,7 @@
         <div class="field has-addons">
             <p class="control">
                 <span class="select">
-                    <select>
+                    <select v-model="addSkill.level">
                         <option>Beginner</option>
                         <option>Intermediate</option>
                         <option>Advanced</option>
@@ -23,10 +23,10 @@
                 </span>
             </p>
             <p class="control is-expanded">
-                <input class="input" type="text">
+                <input v-model="addSkill.name" class="input" type="text">
             </p>
             <p class="control">
-                <a class="button is-primary">
+                <a @click="addNewSkill" class="button is-primary">
                     Add
                 </a>
             </p>
@@ -57,7 +57,11 @@
 export default {
     data() {
         return {
-            skills: null
+            skills: null,
+            addSkill: {
+                level: 'Intermediate',
+                name: ''
+            }
         }
     },
     methods: {
@@ -70,6 +74,10 @@ export default {
         save() {
             this.$store.commit('SKILLS_EDIT', this.skills);
             this.stopEdit();
+        },
+        addNewSkill() {
+            this.$set(this.skills, this.addSkill.name, this.addSkill.level);
+            this.addSkill.name = '';
         }
     },
     created() {
