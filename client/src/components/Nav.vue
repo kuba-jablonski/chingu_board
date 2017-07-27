@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar ">
+    <nav class="navbar">
         <div class="navbar-brand">
-            <router-link to="/" tag="a" class="navbar-item">
+            <router-link to="/" tag="a" id="logo" class="navbar-item">
                 CHINGU BOARD PROJECT
             </router-link>
     
@@ -20,7 +20,6 @@
             </div>
     
             <div class="navbar-end">
-                <div class="navbar-item">
                     <router-link v-if="authed" to="/project/create" tag="a" class="navbar-item">
                         Create a New Project
                     </router-link>
@@ -28,22 +27,27 @@
                         Profile
                     </router-link>
     
-                    <p class="control">
-                        <router-link v-if="!authed" to="/signin" tag="a" class="button">
-                            <span class="icon">
-                                <i class="fa fa-sign-in"></i>
-                            </span>
-                            <span>Login</span>
-                        </router-link>
-                        <a v-if="authed" @click="logOut" class="button">
-                            <span class="icon">
-                                <i class="fa fa-sign-in"></i>
-                            </span>
-                            <span>Logout</span>
-                        </a>
-                    </p>
+                <div class="navbar-item">
+                    <div class="field">
+                        <p class="control">
+                            <router-link v-if="!authed" to="/signin" tag="a" class="button is-primary is-outlined">
+                                <span class="icon">
+                                    <i class="fa fa-sign-in"></i>
+                                </span>
+                                <span>Login</span>
+                            </router-link>
+                            <a v-if="authed" @click="logOut" class="button is-primary is-outlined">
+                                <span class="icon">
+                                    <i class="fa fa-sign-in"></i>
+                                </span>
+                                <span>Logout</span>
+                            </a>
+                        </p>
+                    </div>
+    
                 </div>
             </div>
+        </div>
         </div>
     </nav>
 </template>
@@ -67,3 +71,13 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/settings.scss';
+
+#logo {
+    color: $primary;
+    font-weight: bold;
+}
+
+</style>
