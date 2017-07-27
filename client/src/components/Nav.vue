@@ -17,12 +17,6 @@
                 <router-link to="/projects" tag="a" class="navbar-item ">
                     Explore Projects
                 </router-link>
-                <a v-if="authed" class="navbar-item">
-                    My Projects
-                </a>
-                <a v-if="authed" class="navbar-item">
-                    My Applications
-                </a>
             </div>
     
             <div class="navbar-end">
