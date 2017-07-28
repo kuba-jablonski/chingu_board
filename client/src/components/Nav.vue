@@ -14,7 +14,7 @@
     
         <div :class="{'is-active': showDropdown}" id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-                <router-link to="/projects" tag="a" class="navbar-item ">
+                <router-link to="/projects" tag="a" class="navbar-item">
                     Explore Projects
                 </router-link>
             </div>
@@ -36,7 +36,7 @@
                                 </span>
                                 <span>Login</span>
                             </router-link>
-                            <a v-if="authed" @click="logOut" class="button is-primary is-outlined">
+                            <a v-if="authed" @click="logOut" class="button">
                                 <span class="icon">
                                     <i class="fa fa-sign-in"></i>
                                 </span>
@@ -79,5 +79,4 @@ export default {
     color: $primary;
     font-weight: bold;
 }
-
 </style>

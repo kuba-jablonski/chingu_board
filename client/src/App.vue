@@ -23,5 +23,9 @@ export default {
 @import './assets/styles/settings.scss';
 @import '~bulma/bulma.sass';
 
+body, .section {
+    background-color: $light;
+}
+
 </style>
 

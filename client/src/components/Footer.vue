@@ -14,3 +14,9 @@
         </div>
     </footer>
 </template>
+
+<style lang="scss" scoped>
+.footer {
+    background-color: white;
+}
+</style>
