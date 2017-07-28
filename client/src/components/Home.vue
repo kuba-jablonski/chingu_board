@@ -11,20 +11,20 @@
                 <br>
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-medium is-primary is-inverted">
+                        <router-link to="/projects" tag="button" class="button is-medium is-primary is-inverted">
                             <span class="icon">
                                 <i class="fa fa-search"></i>
                             </span>
                             <span class="is-size-6">Explore projects</span>
-                        </button>
+                        </router-link>
                     </div>
                     <div class="control">
-                        <button class="button is-medium is-primary is-inverted">
+                        <router-link to="/signin" tag="button" class="button is-medium is-primary is-inverted">
                             <span class="icon">
                                 <i class="fa fa-user-plus"></i>
                             </span>
                             <span class="is-size-6">Join an Adventure</span>
-                        </button>
+                        </router-link>
                     </div>
                 </div>
             </div>
