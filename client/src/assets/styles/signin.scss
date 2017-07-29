@@ -1,0 +1,12 @@
+@import '../../assets/styles/settings.scss';
+
+.box {
+    margin: 2rem auto;
+    max-width: 500px;
+}
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $primary;
+    font-size: $size-4;
+}

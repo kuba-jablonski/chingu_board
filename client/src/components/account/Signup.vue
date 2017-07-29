@@ -1,6 +1,7 @@
 <template>
-    <section class="container is-flex">
+    <section class="container">
         <div class="box">
+            <h2 class="title has-text-centered">Register</h2>
             <div class="field">
                 <p class="control has-icons-left">
                     <input v-model="form.username" class="input" type="text" placeholder="Username">
@@ -66,7 +67,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.is-flex {
-    justify-content: center;
-}
+@import '../../assets/styles/signin.scss';
 </style>
