@@ -159,20 +159,6 @@ export default {
                 name: ''
             },
             saved: false,
-            // saving empty starting object in "created" hook then assigning for new project doesn't work
-            clearProject: {
-                details: {
-                    name: '',
-                    team: '2 people',
-                    commitment: '1 h / day',
-                    description: ''
-                    //creator: need the authenticated user username or fullname
-                },
-                candidate: {
-                    description: '',
-                    skills: {}
-                }
-            }
         }
     },
     methods: {
@@ -192,15 +178,14 @@ export default {
         },
         newProject(){
             this.saved = !this.saved;
-            this.project = this.clearProject;
+            this.project = this.$store.state.empty.project;
             location.href = '#top';
         }
+    },
+    created(){
+        
+        console.log(this.$store.state.empty.project);
     }
-    /*created(){
-        this.clearProject = this.project;
-        console.log(this.project);
-        console.log(this.clearProject);
-    }*/
 }
 </script>
 

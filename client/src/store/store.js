@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 // temporary fake data
 import profile from './modules/profile';
 import projects from './modules/projects';
+import empty from './modules/empty';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     },
     modules: {
         profile,
-        projects
+        projects,
+        empty
     }
 });
