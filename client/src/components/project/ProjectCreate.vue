@@ -1,5 +1,5 @@
 <template>
-    <section class="section container" id="top">
+    <section class="container" id="top">
         <div v-if="!saved" class="box">
             <h2 class="title is-3">Create a New Project</h2>
             <div class="box">

@@ -1,6 +1,6 @@
 <template>
     
-    <section class="section container">
+    <section class="container">
         <!-- Explore Projects/ Search -->
         <div class="columns header">
             <div class="column is-half is-offset-one-quarter">

@@ -1,5 +1,5 @@
 <template>
-    <section class="section container">
+    <section class="container">
         <div class="box">
             <div class="box">
                 <h2 class="title is-3">{{ project.details.name }}</h2>

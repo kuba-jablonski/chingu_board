@@ -1,5 +1,5 @@
 <template>
-    <section class="section container is-flex">
+    <section class="container is-flex">
         <div class="box">
             <div class="field">
                 <p class="control has-icons-left">
