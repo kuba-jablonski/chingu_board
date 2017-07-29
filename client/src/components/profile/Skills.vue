@@ -48,7 +48,7 @@ export default {
 }
 .tag {
     border-radius: 3px;
-    background: $mid-blue;
+    background: $primary;
 }
 #skills {
     flex-wrap: wrap; 
