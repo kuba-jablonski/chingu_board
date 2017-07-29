@@ -1,0 +1,24 @@
+@import './settings.scss';
+
+.details-box {
+    margin: 2rem auto;
+}
+
+.details-box-heading {
+    position: relative;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+    border-radius: 5px 5px 0 0;
+    background-color: white;
+    max-width: 300px;
+    border: 1px solid #D5D5D5;
+    border-bottom: none;
+    color: $primary;
+    font-weight: bold;
+    padding: 5px 0;
+    @media (max-width: $tablet) {
+        margin: 0 auto;
+        left: 0;
+    }
+}
