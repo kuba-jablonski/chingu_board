@@ -48,27 +48,24 @@
                 </div>
             </div>
         </div>
-        </div>
     </nav>
 </template>
 
 <script>
+import authed from '../mixins/authed';    
+    
 export default {
     data() {
         return {
             showDropdown: false
         }
     },
-    computed: {
-        authed() {
-            return this.$store.state.authenticated;
-        }
-    },
     methods: {
         logOut() {
             this.$store.commit('AUTH', false);
         }
-    }
+    },
+    mixins: [authed]
 }
 </script>
 
@@ -78,5 +75,15 @@ export default {
 #logo {
     color: $primary;
     font-weight: bold;
+}
+
+#navMenu.navbar-menu.is-active{
+    min-width: 120px;
+    width: 90%;
+    background-color: white;
+    position: absolute;
+    top: 50;
+    right: 0;
+    z-index: 100;
 }
 </style>

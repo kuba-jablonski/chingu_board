@@ -2,14 +2,15 @@
     <section class="section container">
         <div class="box">
             <div class="box">
-                <p>{{ project.details.name }}</p>
-                <span class="tag">
-                    {{ project.details.team }}
-                </span>
-                <span class="tag">
-                    {{ project.details.commitment }}
-                </span>
-                <br>
+                <h2 class="title is-3">{{ project.details.name }}</h2>
+                <p>Team:
+                    <span class="tag">
+                        {{ project.details.team }}
+                    </span> to commit: 
+                    <span class="tag">
+                        {{ project.details.commitment }}
+                    </span>
+                </p>
                 <br>
                 <p>{{ project.details.description }}</p>
             </div>
@@ -35,19 +36,51 @@
 </template>
 
 <script>
+import axios from 'axios'
+    
 export default {
+    data(){
+        return {
+            id: this.$route.params.id,
+            project: {
+                details: {
+                    name: '',
+                    team: '',
+                    commitment: '',
+                    description: ''
+                    //creator: need the authenticated user username or fullname
+                },
+                candidate: {
+                    description: '',
+                    skills: {}
+                }
+            }
+        }
+    },
+    /*
     computed: {
         project() {
             return this.$store.state.projects.projects
                 .find(project => project.id == this.$route.params.id);
         }
-    }
+    },*/
+    created(){
+        axios.get('https://boardtest-58415.firebaseio.com/projects/' + this.id +'.json')
+            .then(response => this.project = response.data);
+        }
 }
 </script>
 
 <style lang="scss" scoped>
 .skill-item {
     margin: 0 10px 10px 0;
+    padding: 5px;    
+    color: white;
+    background: #485563;
+    border-radius: 5px;
+}
+.tag {
+    border-radius: 3px;
 }
 #skills {
     flex-wrap: wrap;

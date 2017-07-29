@@ -1,6 +1,6 @@
 <template>
-    <section class="section container">
-        <div class="box">
+    <section class="section container" id="top">
+        <div v-if="!saved" class="box">
             <h2 class="title is-3">Create a New Project</h2>
             <div class="box">
                 <div class="level is-mobile">
@@ -101,10 +101,34 @@
             </div>
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-primary">Save</button>
+                    <button @click="save" class="button is-primary">Save</button>
                 </div>
                 <div class="control">
                     <button class="button is-link">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div v-if="saved">
+            <h3>Your project was saved!</h3>
+            <hr>
+            <h2 class="title is-5">{{ project.details.name }}</h2>
+            <p>For a team of : {{ project.details.team }}, {{ project.details.commitment }}</p>
+            <p class="subtitle is-5">Project description:</p>
+            <p>{{ project.details.description }}</p>
+            <hr>
+            <p class="subtitle is-5">About the candidate</p>
+            <p>{{ project.candidate.description }}</p>
+            <br>
+            <p class="subtitle is-5">Skills</p>
+            <ul>
+                <li v-for="(key, value) in project.candidate.skills"><strong>{{value}}</strong> - ({{key}})</li>
+            </ul>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-primary">Edit Project</button>
+                </div>
+                <div class="control">
+                    <button class="button is-primary is-outlined" @click="newProject">Add another project</button>
                 </div>
             </div>
         </div>
@@ -112,6 +136,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
@@ -121,6 +147,7 @@ export default {
                     team: '2 people',
                     commitment: '1 h / day',
                     description: ''
+                    //creator: need the authenticated user username or fullname
                 },
                 candidate: {
                     description: '',
@@ -130,6 +157,21 @@ export default {
             addSkill: {
                 required: 'Required',
                 name: ''
+            },
+            saved: false,
+            // saving empty starting object in "created" hook then assigning for new project doesn't work
+            clearProject: {
+                details: {
+                    name: '',
+                    team: '2 people',
+                    commitment: '1 h / day',
+                    description: ''
+                    //creator: need the authenticated user username or fullname
+                },
+                candidate: {
+                    description: '',
+                    skills: {}
+                }
             }
         }
     },
@@ -140,8 +182,25 @@ export default {
         },
         changeValue(payload) {
             this.project.candidate.skills[payload.key] = payload.value;
+        },
+        save(){
+            axios.post('https://boardtest-58415.firebaseio.com/projects.json', this.project).then(function(data){
+                location.href = '#top';
+                console.log(data); // can grab the id from there for edit link, data.name property
+            });
+            this.saved = true;
+        },
+        newProject(){
+            this.saved = !this.saved;
+            this.project = this.clearProject;
+            location.href = '#top';
         }
     }
+    /*created(){
+        this.clearProject = this.project;
+        console.log(this.project);
+        console.log(this.clearProject);
+    }*/
 }
 </script>
 

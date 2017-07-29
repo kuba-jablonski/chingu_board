@@ -13,7 +13,7 @@
         <div id="skills" class="is-flex">
             <div v-for="(value, key) in skills" :key="key" class="skill-item">
                 {{ key }}
-                <span class="tag">
+                <span class="tag is-primary">
                     {{ value }}
                 </span>
             </div>
@@ -23,6 +23,11 @@
 
 <script>
 export default {
+    data() {
+        return{
+            skillLevel: ''
+        }
+    },
     computed: {
         skills() {
             return this.$store.state.profile.user.skills;
@@ -32,10 +37,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .skill-item {
     margin: 0 10px 10px 0;
+    padding: 5px;    
+    color: white;
+    background: #485563;
+    border-radius: 5px;
+}
+.tag {
+    border-radius: 3px;
 }
 #skills {
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
 }
 </style>

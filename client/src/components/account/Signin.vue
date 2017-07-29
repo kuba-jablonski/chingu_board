@@ -23,7 +23,7 @@
                         Login
                     </button>
                 </p>
-                <router-link to="/signup" tag="a">
+                <router-link to="/signup" tag="a" class="signup-link">
                     No account? Create one.
                 </router-link>
             </div>
@@ -31,14 +31,20 @@
             <div class="field">
                 <p class="control">
                     <button class="button is-fullwidth">
-                        Sign in with Google
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-google"></i>
+                        </span>
+                        <span>Sign in with Google</span>
                     </button>
                 </p>
             </div>
             <div class="field">
                 <p class="control">
                     <button class="button is-fullwidth">
-                        Sign in with Github
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-github"></i>
+                        </span>
+                        <span>Sign in with Github</span>
                     </button>
                 </p>
             </div>
@@ -69,5 +75,8 @@ export default {
 <style lang="scss" scoped>
 .is-flex {
     justify-content: center;
+}
+.signup-link {
+    margin-top: auto;
 }
 </style>
