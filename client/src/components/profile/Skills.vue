@@ -37,16 +37,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../../assets/styles/settings.scss';
+    
 .skill-item {
     margin: 0 10px 10px 0;
     padding: 5px;    
     color: white;
-    background: #485563;
+    background: $night-blue;
     border-radius: 5px;
 }
 .tag {
     border-radius: 3px;
+    background: $mid-blue;
 }
 #skills {
     flex-wrap: wrap; 

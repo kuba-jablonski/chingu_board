@@ -7,6 +7,24 @@
 .title {
     text-transform: uppercase;
     font-weight: bold;
-    color: $primary;
+    /*color: $primary;*/
+    color: white;
     font-size: $size-4;
+}
+
+// optional dark theme
+.container {
+    background: $night-blue;
+    color: white;
+}
+.box {
+    background: $dark-blue;
+}
+a {
+    color:white;
+}
+
+button, button:hover {
+    background: $mid-blue;
+    color: white;
 }
