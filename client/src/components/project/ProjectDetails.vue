@@ -1,6 +1,7 @@
 <template>
     <section class="container">
-        <div class="box">
+        <h2 class="details-box-heading title has-text-centered is-5">Project Details</h2>
+        <div class="details-box box">
             <div class="box">
                 <h2 class="title is-3">{{ project.details.name }}</h2>
                 <p>Team:
@@ -72,6 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/details-box.scss';
+
 .skill-item {
     margin: 0 10px 10px 0;
     padding: 5px;    

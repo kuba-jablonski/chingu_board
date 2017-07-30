@@ -1,7 +1,7 @@
 <template>
     <section class="container" id="top">
-        <div v-if="!saved" class="box">
-            <h2 class="title is-3">Create a New Project</h2>
+        <h2 class="details-box-heading title has-text-centered is-5">Create a New Project</h2>
+        <div v-if="!saved" class="details-box box">
             <div class="box">
                 <div class="level is-mobile">
                     <div class="level-left">
@@ -121,7 +121,7 @@
             <br>
             <p class="subtitle is-5">Skills</p>
             <ul>
-                <li v-for="(key, value) in project.candidate.skills"><strong>{{value}}</strong> - ({{key}})</li>
+                <li v-for="(key, value) in project.candidate.skills" :key="key"><strong>{{value}}</strong> - ({{key}})</li>
             </ul>
             <div class="field is-grouped">
                 <div class="control">
@@ -191,6 +191,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '../../assets/styles/details-box.scss';
+
 .select-item {
     margin-right: 20px;
 }
