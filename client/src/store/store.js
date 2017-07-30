@@ -18,6 +18,17 @@ export default new Vuex.Store({
             state.authenticated = boolean;
         }
     },
+    actions: {
+        watchAuthState({ commit }) {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    commit('AUTH', true);
+                } else {
+                    commit('AUTH', false);
+                }
+            });
+        }
+    },    
     modules: {
         profile,
         projects,

@@ -15,6 +15,9 @@ export default {
     components: {
         appNav: Nav,
         appFooter: Footer
+    },
+    created() {
+        this.$store.dispatch('watchAuthState');
     }
 }
 </script>
