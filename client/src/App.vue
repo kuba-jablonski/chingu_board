@@ -26,6 +26,5 @@ export default {
 body {
     background-color: $light;
 }
-
 </style>
 

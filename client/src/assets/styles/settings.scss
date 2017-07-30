@@ -9,3 +9,21 @@ $light-grey: #E5E5E5;
 // Derived variables
 $primary: $blue;
 
+// color palette greyish/blueish
+$color1: #b5c2c7;
+$color2: #879da9;
+$color3: #273c4b;
+$color4: #232c3a;
+
+    
+a {
+    color: $color3;
+}
+a:hover {
+    color: $primary;
+}
+
+
+.title{
+    font-weight: bold;
+}

@@ -23,11 +23,12 @@
         <p>{{ aboutMe.livingIn }}</p>
         <br>
         <p>Introduction</p>
-        <p>{{ aboutMe.introduction }}</p>
+        <p class="line-break">{{ aboutMe.introduction }}</p>
     </div>
 </template>
 
 <script>
+
 export default {
     computed: {
         aboutMe() {
@@ -39,4 +40,11 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+@import '../../assets/styles/settings.scss';
 
+.line-break {
+    white-space: pre;
+    white-space: pre-line;
+}
+</style>

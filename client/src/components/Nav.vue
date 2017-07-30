@@ -38,7 +38,7 @@
                             </router-link>
                             <a v-if="authed" @click="logOut" class="button">
                                 <span class="icon">
-                                    <i class="fa fa-sign-in"></i>
+                                    <i class="fa fa-sign-out"></i>
                                 </span>
                                 <span>Logout</span>
                             </a>

@@ -57,6 +57,7 @@ export default {
     },
     methods: {
         save() {
+            
             this.$store.commit('ABOUT_ME_EDIT', this.aboutMe);
             this.stopEdit();
         },
