@@ -48,7 +48,8 @@ export default {
             this.$store.commit('TOGGLE_EDIT', { component: 'links', active: false });
         },
         save() {
-            this.$store.commit('LINKS_EDIT', this.links);
+            this.$firebase.database().ref(`users/${this.$store.state.uid}/links`)
+                .set(this.links);
             this.stopEdit();
         }
     },

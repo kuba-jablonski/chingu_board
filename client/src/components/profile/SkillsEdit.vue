@@ -57,7 +57,7 @@
 export default {
     data() {
         return {
-            skills: null,
+            skills: {},
             addSkill: {
                 level: 'Intermediate',
                 name: ''
@@ -72,7 +72,8 @@ export default {
             this.skills[payload.key] = payload.value;
         },
         save() {
-            this.$store.commit('SKILLS_EDIT', this.skills);
+            this.$firebase.database().ref(`users/${this.$store.state.uid}/skills`)
+                .set(this.skills);
             this.stopEdit();
         },
         addNewSkill() {
