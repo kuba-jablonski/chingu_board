@@ -18,6 +18,7 @@ export default {
     },
     created() {
         this.$store.dispatch('watchAuthState');
+        this.$store.dispatch('watchProjects');
     }
 }
 </script>

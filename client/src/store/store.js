@@ -12,7 +12,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         authenticated: false,
-        uid: null
+        uid: null // firebase user ID
     },
     mutations: {
         AUTH(state, boolean) {
