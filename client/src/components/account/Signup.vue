@@ -19,7 +19,6 @@
                 </p>
             </div>
             
-    
             <div v-if="error.show" class="notification is-danger">
                 <button @click="error.show = false" class="delete"></button>
                 {{ error.message }}
