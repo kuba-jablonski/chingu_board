@@ -1,7 +1,7 @@
 <template>
     <section class="container" id="top">
         <h2 class="details-box-heading title has-text-centered is-5">Create a New Project</h2>
-        <div v-if="!saved" class="details-box box">
+        <div class="details-box box">
             <div class="box">
                 <div class="level is-mobile">
                     <div class="level-left">
@@ -136,8 +136,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     data() {
         return {
@@ -146,8 +144,8 @@ export default {
                     name: '',
                     team: '2 people',
                     commitment: '1 h / day',
-                    description: ''
-                    //creator: need the authenticated user username or fullname
+                    description: '',
+                    creator: this.$store.state.uid
                 },
                 candidate: {
                     description: '',
@@ -158,7 +156,7 @@ export default {
                 required: 'Required',
                 name: ''
             },
-            saved: false,
+            // saved: false,
         }
     },
     methods: {
@@ -174,11 +172,8 @@ export default {
             this.project.candidate.skills[payload.key] = payload.value;
         },
         save(){
-            axios.post('https://boardtest-58415.firebaseio.com/projects.json', this.project).then(function(data){
-                location.href = '#top';
-                console.log(data); // can grab the id from there for edit link, data.name property
-            });
-            this.saved = true;
+            this.$firebase.database().ref('projects').push(this.project);
+            // this.saved = true;
         },
         // newProject(){
         //     this.saved = !this.saved;
