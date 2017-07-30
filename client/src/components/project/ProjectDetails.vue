@@ -22,10 +22,10 @@
                 <br>
                 <p>Skills:</p>
                 <div id="skills" class="is-flex">
-                    <div v-for="(value, key) in project.candidate.skills" :key="key" class="skill-item">
-                        {{ key }}
+                    <div v-for="skill in project.candidate.skills" :key="skill.name" class="skill-item">
+                        {{ skill.name }}
                         <span class="tag">
-                            {{ value }}
+                            {{ skill.required }}
                         </span>
                     </div>
                 </div>
@@ -37,38 +37,22 @@
 </template>
 
 <script>
-import axios from 'axios'
-    
 export default {
-    data(){
-        return {
-            id: this.$route.params.id,
-            project: {
-                details: {
-                    name: '',
-                    team: '',
-                    commitment: '',
-                    description: ''
-                    //creator: need the authenticated user username or fullname
-                },
-                candidate: {
-                    description: '',
-                    skills: {}
-                }
-            }
-        }
-    },
-    /*
+    // data(){
+    //     return {
+    //         id: this.$route.params.id,
+    //         project: {}
+    //     }
+    // },
     computed: {
         project() {
-            return this.$store.state.projects.projects
-                .find(project => project.id == this.$route.params.id);
+            return this.$store.state.projects.projects[this.$route.params.id];
         }
-    },*/
-    created(){
-        axios.get('https://boardtest-58415.firebaseio.com/projects/' + this.id +'.json')
-            .then(response => this.project = response.data);
-        }
+    },
+    // created(){
+    //     axios.get('https://boardtest-58415.firebaseio.com/projects/' + this.id +'.json')
+    //         .then(response => this.project = response.data);
+    //     }
 }
 </script>
 
