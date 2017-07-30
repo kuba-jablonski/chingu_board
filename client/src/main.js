@@ -7,11 +7,6 @@ import App from './App.vue';
 import routes from './routes';
 import store from './store/store';
 
-// temporary setup
-Vue.prototype.$http = axios.create({
-    baseURL: 'http://localhost:3000'
-});
-
 Vue.prototype.$firebase = firebase.initializeApp({
     apiKey: "AIzaSyAqiyo1BlV5L_qktQxWHl68DTSm4trOf2E",
     authDomain: "chingu-board.firebaseapp.com",
