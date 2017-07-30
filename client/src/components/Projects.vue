@@ -2,7 +2,7 @@
     
     <section class="container">
         <!-- Explore Projects/ Search -->
-        <!-- <div class="columns header">
+         <div class="columns header">
             <div class="column is-half is-offset-one-quarter">
                 <h1 class="title is-2 has-text-centered">Explore projects</h1>
                 <div class="field search">
@@ -14,10 +14,10 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div> 
         
         <div class="tile is-ancestor">
-            <router-link :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-4">
+            <router-link :to="`/project/${project.id}`" v-for="project in filteredProjects" :key="project.id" class="tile is-parent is-4">
                 <article class="tile is-child box">
                     <div class="level">
                         <div class="level-item">
@@ -54,20 +54,7 @@ export default {
             return this.$store.state.projects.projects;
         }
     },
-    // created(){
-    //     axios.get('https://boardtest-58415.firebaseio.com/projects.json')
-    //     .then(function(data){
-    //         var rawProjects = [];
-    //         for (let key in data.data) {
-    //             data.data[key].id = key
-    //             rawProjects.push(data.data[key]);
-    //         }
-    //         //this.projects = rawProjects;
-    //         return rawProjects;
-    //     })
-    //        .then(result => this.projects = result);
-    // },
-    // mixins: [search]
+    mixins: [search]
 }
 
     
