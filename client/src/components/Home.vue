@@ -37,7 +37,7 @@
 @import '../assets/styles/settings.scss';
 
 .title {
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-decoration: underline;
     text-transform: uppercase;
 }

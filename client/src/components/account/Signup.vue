@@ -18,31 +18,38 @@
                     </span>
                 </p>
             </div>
-            <div class="field is-grouped">
+            <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                     <button @click="register" class="button">
                         Register
                     </button>
                 </p>
-                    <button class="button">
+                    <button class="button cancel">
                         Cancel
                     </button>
             </div>
+            
             <hr>
             <div class="field">
-                <p class="control">
-                    <button class="button is-fullwidth">
-                        Sign in with Google
-                    </button>
-                </p>
-            </div>
-            <div class="field">
-                <p class="control">
-                    <button class="button is-fullwidth">
-                        Sign in with Github
-                    </button>
-                </p>
-            </div>
+                    <p class="control">
+                        <button class="button is-fullwidth">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-google"></i>
+                            </span>
+                            <span>Sign up with Google</span>
+                        </button>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button class="button is-fullwidth">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-github"></i>
+                            </span>
+                            <span>Sign up with Github</span>
+                        </button>
+                    </p>
+                </div>
         </div>
     </section>
 </template>

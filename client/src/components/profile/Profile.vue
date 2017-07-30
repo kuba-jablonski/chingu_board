@@ -36,5 +36,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/details-box.scss';
+
 </style>
 

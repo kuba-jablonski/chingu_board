@@ -3,10 +3,44 @@
 .box {
     margin: 2rem auto;
     max-width: 500px;
+    
 }
 .title {
     text-transform: uppercase;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: $primary;
     font-size: $size-4;
+}
+
+
+button {
+    color: $color1;
+    background: $color3;
+}
+
+button:hover, button:active {
+    color: $white;
+    background: $primary;
+}
+
+// styling the no account, left column
+.no-account {
+    margin: auto;
+    color: $color3;
+}
+.no-account a:hover {
+    color: $primary;
+}
+.left-divider{
+    border-left: 1px solid $color1;
+}
+
+/* signup form */
+.cancel {
+    color: $color3;
+    background: $color1;
+}
+.cancel:hover {
+    color: $color4;
+    background: $color2;
 }

@@ -4,7 +4,7 @@
         <!-- Explore Projects/ Search -->
         <div class="columns header">
             <div class="column is-half is-offset-one-quarter">
-                <h1 class="title is-2 has-text-centered"><strong>Explore projects</strong></h1>
+                <h1 class="title is-2 has-text-centered">Explore projects</h1>
                 <div class="field search">
                     <div class="control has-icons-right">
                         <input v-model="search" class="input is-large" type="text" placeholder="search projects">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <br>
-                    <p>{{ project.details.description }}</p>
+                    <p class="line-break">{{ project.details.description}}</p>
                 </article>
             </router-link>
         </div>
@@ -56,13 +56,7 @@ export default {
             return this.$store.state.projects.projects;
         }
     },
-    computed: {
-        filteredProjects: function(){
-            return this.projects.filter((project) => {
-                return project.details.description.match(this.search);
-            })
-        }
-    },*/
+   */
     created(){
         axios.get('https://boardtest-58415.firebaseio.com/projects.json')
         .then(function(data){
@@ -84,14 +78,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../assets/styles/settings.scss';
 .is-ancestor {
     flex-wrap: wrap;
 }
 .header {
     margin-bottom: 50px;
 }
-    .search{
-        margin-top: 40px;
-    }
+.search{
+    margin-top: 40px;
+}
+.line-break {
+    white-space: pre;
+    white-space: pre-line;
+}
 </style>

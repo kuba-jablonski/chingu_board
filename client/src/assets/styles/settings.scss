@@ -9,17 +9,21 @@ $light-grey: #E5E5E5;
 // Derived variables
 $primary: $blue;
 
-//dark blue palette
-/* $dark-blue: #16222A;*/
-$mid-blue: #3A6073;
+// color palette greyish/blueish
+$color1: #b5c2c7;
+$color2: #879da9;
+$color3: #273c4b;
+$color4: #232c3a;
 
-//light blue theme
-/* $dark-blue: #3A6073; */
-$light-blue: #0cebeb;
+    
+a {
+    color: $color3;
+}
+a:hover {
+    color: $primary;
+}
 
-/* $night-blue: #010C10; */
-/* $mid-blue: #074E66; */
-$lighter-blue: #A4D9EB;
 
-$night-blue: #141E30;
-$dark-blue: #243B55;
+.title{
+    font-weight: bold;
+}

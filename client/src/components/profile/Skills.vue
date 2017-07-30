@@ -10,10 +10,10 @@
                 <a @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">edit</a>
             </div>
         </div>
-        <div id="skills" class="is-flex">
+        <div id="skills" class="is-flex is-grouped is-grouped-centered">
             <div v-for="(value, key) in skills" :key="key" class="skill-item">
                 {{ key }}
-                <span class="tag is-primary">
+                <span class="tag is-primary" :class="value">
                     {{ value }}
                 </span>
             </div>
@@ -42,15 +42,30 @@ export default {
 .skill-item {
     margin: 0 10px 10px 0;
     padding: 5px;    
-    color: white;
-    background: $night-blue;
+    background: $color1;
     border-radius: 5px;
+    font-weight: bold;
 }
 .tag {
     border-radius: 3px;
-    background: $primary;
+    color: white;
+    font-weight: normal;
 }
 #skills {
     flex-wrap: wrap; 
 }
+    
+.Beginner {
+    background: $color3;
+}
+
+.Intermediate {
+    background: $color2;
+}
+
+.Advanced {
+    background: $primary;
+}
+    
+    
 </style>
