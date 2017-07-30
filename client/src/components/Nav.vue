@@ -32,13 +32,13 @@
                         <p class="control">
                             <router-link v-if="!authed" to="/signin" tag="a" class="button is-primary is-outlined">
                                 <span class="icon">
-                                    <i class="fa fa-sign-in"></i>
+                                    <i class="fa fa-sign-"></i>
                                 </span>
                                 <span>Login</span>
                             </router-link>
                             <a v-if="authed" @click="logOut" class="button">
                                 <span class="icon">
-                                    <i class="fa fa-sign-in"></i>
+                                    <i class="fa fa-sign-out"></i>
                                 </span>
                                 <span>Logout</span>
                             </a>

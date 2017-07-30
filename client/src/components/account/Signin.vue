@@ -3,7 +3,11 @@
         <div class="columns box">
             <div class="column is-one-third no-account has-text-centered">
                 <router-link to="/signup" tag="a" class="signup-link">
-                    No account? Create one.
+                    
+                    <span>No account? Create one.</span>
+                    <span class="icon">
+                                <i class="fa fa-user-plus"></i>
+                            </span>
                 </router-link></div>            
             <div class="column left-divider">
                 <h2 class="title has-text-centered">Login</h2>
