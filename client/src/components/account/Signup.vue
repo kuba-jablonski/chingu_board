@@ -31,14 +31,14 @@
             <hr>
             <div class="field">
                 <p class="control">
-                    <button class="button is-fullwidth">
+                    <button @click="signInWithProvider(providers.google)" class="button is-fullwidth">
                         Sign in with Google
                     </button>
                 </p>
             </div>
             <div class="field">
                 <p class="control">
-                    <button class="button is-fullwidth">
+                    <button @click="signInWithProvider(providers.github)" class="button is-fullwidth">
                         Sign in with Github
                     </button>
                 </p>
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import socialLogin from '../../mixins/socialLogin';
+
 export default {
     data() {
         return {
@@ -62,7 +64,8 @@ export default {
             // !!!
             this.$store.commit('AUTH', true);
         }
-    }
+    },
+    mixins: [socialLogin]
 }
 </script>
 
