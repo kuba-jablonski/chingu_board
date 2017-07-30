@@ -25,27 +25,33 @@ export default new Vuex.Store({
     actions: {
         watchAuthState({ commit, dispatch }) {
             firebase.auth().onAuthStateChanged(user => {
+
+                const emptyProfile = 
+                {
+                    aboutMe: {
+                        firstName: '',
+                        lastName: '',
+                        livingIn: '',
+                        introduction: ''
+                    },
+                    skills: {},
+                    links: {
+                        portfolio: '',
+                        github: ''
+                    }
+                }
+
                 if (user) {
                     commit('AUTH', true);
                     commit('UID', user.uid);
+
                     const usersRef = firebase.database().ref('users');
                     usersRef.once('value', snap => {
                         if (!snap.hasChild(user.uid)) {
-                            usersRef.child(user.uid).set({
-                                aboutMe: {
-                                    firstName: '',
-                                    lastName: '',
-                                    livingIn: '',
-                                    introduction: ''
-                                },
-                                skills: {},
-                                links: {
-                                    portfolio: '',
-                                    github: ''
-                                }
-                            }).then(() => {
-                                dispatch('getUserProfile');
-                            })
+                            usersRef.child(user.uid).set(emptyProfile)
+                                .then(() => {
+                                    dispatch('getUserProfile');
+                                })
                         } else {
                             dispatch('getUserProfile');
                         }
@@ -53,6 +59,7 @@ export default new Vuex.Store({
                 } else {
                     commit('AUTH', false);
                     commit('UID', null);
+                    commit('SET_USER_PROFILE', emptyProfile)
                 }
             });
         }
