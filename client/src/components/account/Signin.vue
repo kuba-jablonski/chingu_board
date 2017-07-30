@@ -9,7 +9,7 @@
                                 <i class="fa fa-user-plus"></i>
                             </span>
                 </router-link></div>            
-            <div class="column left-divider">
+            <div class="column divider">
                 <h2 class="title has-text-centered">Login</h2>
                 <div class="field">
                     <p class="control has-icons-left">

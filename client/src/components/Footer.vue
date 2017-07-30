@@ -4,7 +4,7 @@
             <div class="columns is-inverted">
                 <div class="column">
                     <!-- first column -->
-                    <p class="title is-6 is-spaced"><strong>For Talent</strong></p>
+                    <p class="title is-6 is-spaced">For Talent</p>
                     <hr>
                     <ul>
                         <li><router-link to="/projects">Explore Projects</router-link></li>
@@ -14,7 +14,7 @@
                 
                 <!-- second column -->
                 <div class="column">
-                    <p class="title is-6 is-spaced"><strong>For Project Creators</strong></p>
+                    <p class="title is-6 is-spaced">For Project Creators</p>
                     <hr>
                     <ul>
                         <li><router-link v-if="authed" to="/project/create">add a project</router-link></li>
@@ -36,7 +36,7 @@
                 
                 <!-- third column -->
                 <div class="column">
-                    <p class="title is-6"><strong>Chingu</strong></p>
+                    <p class="title is-6">Chingu</p>
                     <hr>
                     <ul>
                         <li>who we are</li>
@@ -47,7 +47,7 @@
                 
                 <!-- fourth column -->
                 <div class="column">
-                    <p class="title is-6"><strong>Follow us</strong></p>
+                    <p class="title is-6">Follow us</p>
                     <hr>
                     <ul>
                         
@@ -111,6 +111,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/settings.scss';
+    
 .columns {
     text-transform: uppercase;
 }
@@ -127,7 +129,4 @@ export default {
 .footer {
     background-color: white;
 }
-    .toright{
-        float:right;
-    }
 </style>
