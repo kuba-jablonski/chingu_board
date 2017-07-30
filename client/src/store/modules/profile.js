@@ -8,7 +8,7 @@ const state = {
             livingIn: '',
             introduction: ''
         },
-        skills: {},
+        skills: [],
         links: {
             portfolio: '',
             github: ''

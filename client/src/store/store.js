@@ -34,7 +34,7 @@ export default new Vuex.Store({
                         livingIn: '',
                         introduction: ''
                     },
-                    skills: {},
+                    skills: [],
                     links: {
                         portfolio: '',
                         github: ''

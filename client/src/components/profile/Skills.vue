@@ -16,10 +16,10 @@
             </div>
         </div>
         <div id="skills" class="is-flex is-grouped is-grouped-centered">
-            <div v-for="(value, key) in skills" :key="key" class="skill-item">
-                {{ key }}
-                <span class="tag is-primary" :class="value">
-                    {{ value }}
+            <div v-for="skill in skills" :key="skill.name" class="skill-item">
+                {{ skill.name }}
+                <span class="tag is-primary" :class="skill.level">
+                    {{ skill.level }}
                 </span>
             </div>
         </div>

@@ -31,15 +31,15 @@
                 </a>
             </p>
         </div>
-        <div v-for="(value, key) in skills" :key="key" class="level">
+        <div v-for="(skill, index) in skills" :key="skill.name" class="level">
             <div class="level-left">
-                <div class="level-item">{{ key }}</div>
-                <a class="level-item tag" @click="changeValue({key: key, value: 'Beginner'})" :class="{'is-black': value === 'Beginner'}">Beginner</a>
-                <a class="level-item tag" @click="changeValue({key: key, value: 'Intermediate'})" :class="{'is-black': value === 'Intermediate'}">Intermediate</a>
-                <a class="level-item tag" @click="changeValue({key: key, value: 'Advanced'})" :class="{'is-black': value === 'Advanced'}">Advanced</a>
+                <div class="level-item">{{ skill.name }}</div>
+                <a class="level-item tag" @click="skill.level = 'Beginner'" :class="{'is-black': skill.level === 'Beginner'}">Beginner</a>
+                <a class="level-item tag" @click="skill.level = 'Intermediate'" :class="{'is-black': skill.level === 'Intermediate'}">Intermediate</a>
+                <a class="level-item tag" @click="skill.level = 'Advanced'" :class="{'is-black': skill.level === 'Advanced'}">Advanced</a>
             </div>
             <div class="level-right">
-                <div @click="$delete(skills, key)" class="level-item delete"></div>
+                <div @click="skills.splice(index, 1)" class="level-item delete"></div>
             </div>
         </div>
         <div class="field is-grouped">
@@ -57,7 +57,7 @@
 export default {
     data() {
         return {
-            skills: {},
+            skills: [],
             addSkill: {
                 level: 'Intermediate',
                 name: ''
@@ -77,12 +77,20 @@ export default {
             this.stopEdit();
         },
         addNewSkill() {
-            this.$set(this.skills, this.addSkill.name, this.addSkill.level);
+            const newSkill = {
+                name: this.addSkill.name,
+                level: this.addSkill.level
+            }
+            this.skills.push(newSkill);
             this.addSkill.name = '';
         }
     },
     created() {
-        this.skills = JSON.parse(JSON.stringify(this.$store.state.profile.user.skills));
+        if (this.$store.state.profile.user.skills) {
+            this.skills = this.$store.state.profile.user.skills.slice();
+        } else {
+            this.skills = [];
+        }
     }
 }
 </script>
