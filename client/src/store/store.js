@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import firebase from 'firebase';
 
 // temporary fake data
 import profile from './modules/profile';
