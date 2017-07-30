@@ -88,14 +88,14 @@
                         </a>
                     </p>
                 </div>
-                <div v-for="(value, key) in project.candidate.skills" :key="key" class="level">
+                <div v-for="(skill, index) in project.candidate.skills" :key="skill.name" class="level">
                     <div class="level-left">
-                        <div class="level-item">{{ key }}</div>
-                        <a class="level-item tag" @click="changeValue({key: key, value: 'Required'})" :class="{'is-black': value === 'Required'}">Required</a>
-                        <a class="level-item tag" @click="changeValue({key: key, value: 'Optional'})" :class="{'is-black': value === 'Optional'}">Optional</a>
+                        <div class="level-item">{{ skill.name }}</div>
+                        <a class="level-item tag" @click="skill.required = 'Required'" :class="{'is-black': skill.required === 'Required'}">Required</a>
+                        <a class="level-item tag" @click="skill.required = 'Optional'" :class="{'is-black': skill.required === 'Optional'}">Optional</a>
                     </div>
                     <div class="level-right">
-                        <div @click="$delete(project.candidate.skills, key)" class="level-item delete"></div>
+                        <div @click="project.candidate.skills.splice(index, 1)" class="level-item delete"></div>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="saved">
+        <!-- <div v-if="saved">
             <h3>Your project was saved!</h3>
             <hr>
             <h2 class="title is-5">{{ project.details.name }}</h2>
@@ -130,7 +130,7 @@
                 <div class="control">
                     <button class="button is-primary is-outlined" @click="newProject">Add another project</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
@@ -151,7 +151,7 @@ export default {
                 },
                 candidate: {
                     description: '',
-                    skills: {}
+                    skills: []
                 }
             },
             addSkill: {
@@ -163,7 +163,11 @@ export default {
     },
     methods: {
         addNewSkill() {
-            this.$set(this.project.candidate.skills, this.addSkill.name, this.addSkill.required);
+            const newSkill = {
+                name: this.addSkill.name,
+                required: this.addSkill.required
+            }
+            this.project.candidate.skills.push(newSkill);
             this.addSkill.name = '';
         },
         changeValue(payload) {
@@ -176,16 +180,16 @@ export default {
             });
             this.saved = true;
         },
-        newProject(){
-            this.saved = !this.saved;
-            this.project = this.$store.state.empty.project;
-            location.href = '#top';
-        }
+        // newProject(){
+        //     this.saved = !this.saved;
+        //     this.project = this.$store.state.empty.project;
+        //     location.href = '#top';
+        // }
     },
-    created(){
+    // created(){
         
-        console.log(this.$store.state.empty.project);
-    }
+    //     console.log(this.$store.state.empty.project);
+    // }
 }
 </script>
 
