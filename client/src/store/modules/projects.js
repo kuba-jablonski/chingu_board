@@ -15,7 +15,11 @@ const actions = {
         const projectRef = firebase.database().ref('projects')
 
         projectRef.on('value', snap => {
-            commit('SET_PROJECTS', snap.val());
+            let projects = [];
+            snap.forEach(snap => {
+                projects.push(snap.val());
+            });
+            commit('SET_PROJECTS', projects);
         });
     }
 }

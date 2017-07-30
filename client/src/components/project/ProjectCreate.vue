@@ -172,7 +172,10 @@ export default {
             this.project.candidate.skills[payload.key] = payload.value;
         },
         save(){
-            this.$firebase.database().ref('projects').push(this.project);
+            const newProjectRef = this.$firebase.database().ref('projects').push();
+            const projectId = newProjectRef.key;
+            this.project.id = projectId;
+            newProjectRef.set(this.project);
             // this.saved = true;
         },
         // newProject(){
