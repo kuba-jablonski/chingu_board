@@ -13,7 +13,7 @@
                 <h2 class="title has-text-centered">Login</h2>
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input v-model="form.username" class="input" type="text" placeholder="Username">
+                        <input v-model="form.email" class="input" type="text" placeholder="Username">
                         <span class="icon is-small is-left">
                             <i class="fa fa-user"></i>
                         </span>
