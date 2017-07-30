@@ -4,9 +4,9 @@
             <h2 class="title has-text-centered">Register</h2>
             <div class="field">
                 <p class="control has-icons-left">
-                    <input v-model="form.username" class="input" type="text" placeholder="Username">
+                    <input v-model="form.email" class="input" type="email" placeholder="Email">
                     <span class="icon is-small is-left">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-envelope"></i>
                     </span>
                 </p>
             </div>
@@ -18,6 +18,13 @@
                     </span>
                 </p>
             </div>
+            
+    
+            <div v-if="error.show" class="notification is-danger">
+                <button @click="error.show = false" class="delete"></button>
+                {{ error.message }}
+            </div>
+    
             <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                     <button @click="register" class="button">
@@ -32,7 +39,7 @@
             <hr>
             <div class="field">
                     <p class="control">
-                        <button class="button is-fullwidth">
+                        <button @click="signInWithProvider(providers.google)" class="button is-fullwidth">
                             <span class="icon is-small is-left">
                                 <i class="fa fa-google"></i>
                             </span>
@@ -42,7 +49,7 @@
                 </div>
                 <div class="field">
                     <p class="control">
-                        <button class="button is-fullwidth">
+                        <button @click="signInWithProvider(providers.github)" class="button is-fullwidth">
                             <span class="icon is-small is-left">
                                 <i class="fa fa-github"></i>
                             </span>
@@ -55,21 +62,31 @@
 </template>
 
 <script>
+import socialLogin from '../../mixins/socialLogin';
+
 export default {
     data() {
         return {
             form: {
-                username: '',
+                email: '',
                 password: ''
+            },
+            error: {
+                show: false,
+                message: ''
             }
         }
     },
     methods: {
         register() {
-            // !!!
-            this.$store.commit('AUTH', true);
+            this.$firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+                .catch(e => {
+                    this.error.show = true;
+                    this.error.message = e.message;
+                });
         }
-    }
+    },
+    mixins: [socialLogin]
 }
 </script>
 

@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         logOut() {
-            this.$store.commit('AUTH', false);
+            this.$firebase.auth().signOut();
         }
     },
     mixins: [authed]

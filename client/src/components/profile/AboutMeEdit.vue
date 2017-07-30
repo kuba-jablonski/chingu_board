@@ -57,8 +57,8 @@ export default {
     },
     methods: {
         save() {
-            
-            this.$store.commit('ABOUT_ME_EDIT', this.aboutMe);
+            this.$firebase.database().ref(`users/${this.$store.state.uid}/aboutMe`)
+                .set(this.aboutMe);
             this.stopEdit();
         },
         stopEdit() {
