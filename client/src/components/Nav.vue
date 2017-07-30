@@ -32,7 +32,7 @@
                         <p class="control">
                             <router-link v-if="!authed" to="/signin" tag="a" class="button is-primary is-outlined">
                                 <span class="icon">
-                                    <i class="fa fa-sign-"></i>
+                                    <i class="fa fa-sign-in"></i>
                                 </span>
                                 <span>Login</span>
                             </router-link>
