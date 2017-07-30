@@ -38,21 +38,12 @@
 
 <script>
 export default {
-    // data(){
-    //     return {
-    //         id: this.$route.params.id,
-    //         project: {}
-    //     }
-    // },
     computed: {
         project() {
-            return this.$store.state.projects.projects[this.$route.params.id];
+            return this.$store.state.projects.projects
+                .find(project => project.id === this.$route.params.id);
         }
-    },
-    // created(){
-    //     axios.get('https://boardtest-58415.firebaseio.com/projects/' + this.id +'.json')
-    //         .then(response => this.project = response.data);
-    //     }
+    }
 }
 </script>
 

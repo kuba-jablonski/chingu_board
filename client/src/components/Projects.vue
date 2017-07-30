@@ -17,7 +17,7 @@
         </div> -->
         
         <div class="tile is-ancestor">
-            <router-link :to="`/project/${key}`" v-for="(project, key) in projects" :key="key" class="tile is-parent is-4">
+            <router-link :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-4">
                 <article class="tile is-child box">
                     <div class="level">
                         <div class="level-item">
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import search from '../mixins/search';
     
 export default {
