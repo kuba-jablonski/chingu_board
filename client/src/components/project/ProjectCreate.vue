@@ -193,6 +193,11 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/styles/details-box.scss';
 
+.line-break {
+    white-space: pre;
+    white-space: pre-line;
+}
+    
 .select-item {
     margin-right: 20px;
 }
