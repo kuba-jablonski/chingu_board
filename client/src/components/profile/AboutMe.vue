@@ -7,7 +7,12 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">edit</a>
+                <a @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">
+                    edit
+                    <span class="icon is-small">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </a>
             </div>
         </div>
         <br>
@@ -34,3 +39,4 @@ export default {
     }
 }
 </script>
+

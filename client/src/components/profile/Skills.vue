@@ -7,7 +7,12 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">edit</a>
+                <a @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
+                    edit
+                    <span class="icon is-small">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </a>
             </div>
         </div>
         <div id="skills" class="is-flex">
@@ -24,7 +29,7 @@
 <script>
 export default {
     data() {
-        return{
+        return {
             skillLevel: ''
         }
     },
@@ -37,18 +42,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .skill-item {
     margin: 0 10px 10px 0;
-    padding: 5px;    
+    padding: 5px;
     color: white;
     background: #485563;
     border-radius: 5px;
 }
+
 .tag {
     border-radius: 3px;
 }
+
 #skills {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 </style>
