@@ -4,9 +4,9 @@
             <h2 class="title has-text-centered">Register</h2>
             <div class="field">
                 <p class="control has-icons-left">
-                    <input v-model="form.username" class="input" type="text" placeholder="Username">
+                    <input v-model="form.email" class="input" type="email" placeholder="Email">
                     <span class="icon is-small is-left">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-envelope"></i>
                     </span>
                 </p>
             </div>
@@ -18,15 +18,21 @@
                     </span>
                 </p>
             </div>
+    
+            <div v-if="error.show" class="notification is-danger">
+                <button @click="error.show = false" class="delete"></button>
+                {{ error.message }}
+            </div>
+    
             <div class="field is-grouped">
                 <p class="control">
                     <button @click="register" class="button">
                         Register
                     </button>
                 </p>
-                    <button class="button">
-                        Cancel
-                    </button>
+                <button class="button">
+                    Cancel
+                </button>
             </div>
             <hr>
             <div class="field">
@@ -54,15 +60,22 @@ export default {
     data() {
         return {
             form: {
-                username: '',
+                email: '',
                 password: ''
+            },
+            error: {
+                show: false,
+                message: ''
             }
         }
     },
     methods: {
         register() {
-            // !!!
-            this.$store.commit('AUTH', true);
+            this.$firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
+                .catch(e => {
+                    this.error.show = true;
+                    this.error.message = e.message;
+                });
         }
     },
     mixins: [socialLogin]
