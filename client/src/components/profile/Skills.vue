@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         skills() {
-            return this.$store.state.profile.user.skills;
+            return this.$store.getters.skills;
         }
     }
 }

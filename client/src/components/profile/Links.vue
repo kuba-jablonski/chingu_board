@@ -36,7 +36,7 @@
 export default {
     computed: {
         links() {
-            return this.$store.state.profile.user.links;
+            return this.$store.getters.links;
         }
     }
 }
