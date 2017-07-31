@@ -24,7 +24,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        watchAuthState({ commit, dispatch }) {
+        watchAuthState({ commit, dispatch, state }) {
             firebase.auth().onAuthStateChanged(user => {
 
                 const emptyProfile = 
@@ -51,17 +51,25 @@ export default new Vuex.Store({
                         if (!snap.hasChild(user.uid)) {
                             usersRef.child(user.uid).set(emptyProfile)
                                 .then(() => {
-                                    return dispatch('getUserProfile');
+                                    dispatch('getUserProfile');
+                                    if (state.route.path === '/signup' || state.route.path === '/signin') {
+                                        router.push('/profile');
+                                    }
                                 })
-                                .then(() => router.push('/profile'));
                         } else {
                             dispatch('getUserProfile');
+                            if (state.route.path === '/signup' || state.route.path === '/signin') {
+                                router.push('/projects');
+                            }
                         }
                     });
                 } else {
                     commit('AUTH', false);
                     commit('UID', null);
-                    commit('SET_USER_PROFILE', emptyProfile)
+                    commit('SET_USER_PROFILE', emptyProfile);
+                    if (state.route.path === '/profile' || state.route.path === '/project/create') {
+                        router.push('/projects');
+                    }
                 }
             });
         }
