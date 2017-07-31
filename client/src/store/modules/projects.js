@@ -8,7 +8,7 @@ const mutations = {
     SET_PROJECTS(state, projects) {
         state.projects = projects;
     }
-}
+};
 
 const actions = {
     watchProjects({ commit }) {
@@ -22,10 +22,24 @@ const actions = {
             commit('SET_PROJECTS', projects);
         });
     }
+};
+
+const getters = {
+    projects(state) {
+        return state.projects;
+    },
+    filteredProjects(state) {
+        return search => {
+            return state.projects.filter((project) => {
+                return project.details.name.toLowerCase().match(search.toLowerCase());
+            });
+        }
+    }
 }
 
 export default {
     state,
     mutations,
-    actions
+    actions,
+    getters
 };

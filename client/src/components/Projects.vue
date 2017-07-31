@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import search from '../mixins/search';
-    
 export default {
     data() {
         return {
@@ -50,11 +48,10 @@ export default {
         }
     },
     computed: {
-        projects() {
-            return this.$store.state.projects.projects;
+        filteredProjects() {
+            return this.$store.getters.filteredProjects(this.search);
         }
-    },
-    mixins: [search]
+    }
 }
 
     
