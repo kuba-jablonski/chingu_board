@@ -37,7 +37,7 @@ const mutations = {
     SET_USER_PROFILE(state, user) {
         state.user = user;
     }
-}
+};
 
 const actions = {
     getUserProfile({ commit, rootState }) {
@@ -46,10 +46,26 @@ const actions = {
                 commit('SET_USER_PROFILE', snap.val());
             });
     }
+};
+
+const getters = {
+    fullName(state) {
+        return state.user.aboutMe.firstName + ' ' + state.user.aboutMe.lastName;
+    },
+    aboutMe(state) {
+        return state.user.aboutMe;
+    },
+    skills(state) {
+        return state.user.skills;
+    },
+    links(state) {
+        return state.user.links;
+    }
 }
 
 export default {
     state,
     mutations,
-    actions
+    actions,
+    getters
 };

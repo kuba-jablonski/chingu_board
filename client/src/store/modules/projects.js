@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
     watchProjects({ commit }) {
-        const projectRef = firebase.database().ref('projects')
+        const projectRef = firebase.database().ref('projects');
 
         projectRef.on('value', snap => {
             let projects = [];

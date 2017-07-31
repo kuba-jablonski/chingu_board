@@ -17,7 +17,7 @@
         </div>
         <br>
         <p>Name</p>
-        <p>{{ fullname }}</p>
+        <p>{{ fullName }}</p>
         <br>
         <p>Living in</p>
         <p>{{ aboutMe.livingIn }}</p>
@@ -28,15 +28,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
     computed: {
-        aboutMe() {
-            return this.$store.state.profile.user.aboutMe;
-        },
-        fullname() {
-            return this.aboutMe.firstName + ' ' + this.aboutMe.lastName;
-        }
+        ...mapGetters([
+            'aboutMe',
+            'fullName'
+        ])
     }
 }
 </script>
