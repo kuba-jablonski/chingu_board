@@ -2,10 +2,11 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import firebase from 'firebase';
 
-// temporary fake data
+import { router } from '../router/router';
+
 import profile from './modules/profile';
 import projects from './modules/projects';
-import empty from './modules/empty';
+// import empty from './modules/empty';
 
 Vue.use(Vuex);
 
@@ -50,8 +51,9 @@ export default new Vuex.Store({
                         if (!snap.hasChild(user.uid)) {
                             usersRef.child(user.uid).set(emptyProfile)
                                 .then(() => {
-                                    dispatch('getUserProfile');
+                                    return dispatch('getUserProfile');
                                 })
+                                .then(() => router.push('/profile'));
                         } else {
                             dispatch('getUserProfile');
                         }
@@ -67,6 +69,6 @@ export default new Vuex.Store({
     modules: {
         profile,
         projects,
-        empty
+        // empty
     }
 });
