@@ -30,9 +30,9 @@
                         Register
                     </button>
                 </p>
-                    <button class="button cancel">
+                    <router-link to="/signin" tag="button" class="button cancel">
                         Cancel
-                    </button>
+                    </router-link>
             </div>
             
             <hr>
