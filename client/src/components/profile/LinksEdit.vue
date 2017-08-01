@@ -13,15 +13,25 @@
         <br>
         <div class="columns">
             <div class="field column">
-                <label class="label">Portfolio</label>
+                <label class="label">
+                    <span class="icon">
+                        <i class="fa fa-home"></i>
+                    </span>
+                    Portfolio
+                </label>
                 <div class="control">
-                    <input v-model="links.portfolio" class="input" type="text" placeholder="Text input">
+                    <input v-model="links.portfolio" class="input" type="text" placeholder="Link to your portfolio">
                 </div>
             </div>
             <div class="field column">
-                <label class="label">Github</label>
+                <label class="label">
+                    <span class="icon">
+                        <i class="fa fa-github"></i>
+                    </span>
+                    Github
+                </label>
                 <div class="control">
-                    <input v-model="links.github" class="input" type="text" placeholder="Text input">
+                    <input v-model="links.github" class="input" type="text" placeholder="https://github/...">
                 </div>
             </div>
         </div>

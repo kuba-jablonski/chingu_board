@@ -15,26 +15,32 @@
             <div class="field column">
                 <label class="label">First Name</label>
                 <div class="control">
-                    <input v-model="aboutMe.firstName" class="input" type="text" placeholder="Text input">
+                    <input v-model="aboutMe.firstName" class="input" type="text" placeholder="First name">
                 </div>
             </div>
             <div class="field column">
                 <label class="label">Last Name</label>
                 <div class="control">
-                    <input v-model="aboutMe.lastName" class="input" type="text" placeholder="Text input">
+                    <input v-model="aboutMe.lastName" class="input" type="text" placeholder="Last name">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Chingu Username</label>
+                <div class="control">
+                    <input v-model="aboutMe.chingu" class="input" type="text" placeholder="username on Chingu Central">
                 </div>
             </div>
         </div>
         <div class="field">
             <label class="label">Living in</label>
             <div class="control">
-                <input v-model="aboutMe.livingIn" class="input" type="text" placeholder="Text input">
+                <input v-model="aboutMe.livingIn" class="input" type="text" placeholder="Where are you?">
             </div>
         </div>
         <div class="field">
             <label class="label">Introduction</label>
             <div class="control">
-                <textarea v-model="aboutMe.introduction" class="textarea" placeholder="Textarea"></textarea>
+                <textarea v-model="aboutMe.introduction" class="textarea" placeholder="Tell us about you"></textarea>
             </div>
         </div>
         <div class="field is-grouped">

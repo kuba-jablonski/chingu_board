@@ -108,16 +108,22 @@ export default {
 
 .tag {
     border-radius: 3px;
-    color: white;
+    /*color: white;*/
     font-weight: normal;
 }
-
+.tag:hover {
+    color: $white;
+    background: $color4;
+}
+.Beginner, .Intermediate, .Advanced {
+    color: white;
+}    
 .Beginner {
-    background: $color3;
+    background: $color2;
 }
 
 .Intermediate {
-    background: $color2;
+    background: $color3;
 }
 
 .Advanced {

@@ -6,7 +6,8 @@ const state = {
             firstName: '',
             lastName: '',
             livingIn: '',
-            introduction: ''
+            introduction: '',
+            chingu: ''
         },
         skills: [],
         links: {

@@ -15,19 +15,25 @@
                 </a>
             </div>
         </div>
-        <div class="is-flex">
-            <a :href="links.portfolio" target="_blank" class="link-item">
-                <span class="icon">
+        
+        <div class="field is-grouped">
+            <p class="control has-icon-left">
+                <a :href="links.portfolio" target="_blank" class="button portfolio">
+                    <span class="icon">
                     <i class="fa fa-home"></i>
-                </span>
-                Portfolio
-            </a>
-            <a :href="links.github" target="_blank" class="link-item">
-                <span class="icon">
-                    <i class="fa fa-github"></i>
-                </span>
-                Github
-            </a>
+                    </span>
+                    <span>Portfolio</span>
+                </a>
+            </p>
+            <p class="control has-icon-left">
+                <a :href="links.github" target="_blank" class="button github">
+                    <span class="icon">
+                        <i class="fa fa-github"></i>
+                    </span>
+                    <span>Github</span>
+                </a>
+            </p>
+          
         </div>
     </div>
 </template>
@@ -43,7 +49,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.link-item {
-    margin-right: 10px;
+@import '../../assets/styles/settings.scss';
+
+.portfolio{
+    color: white;
+    background: $color3;
+}
+.portfolio:hover{
+    color: white;
+    background: $primary;
 }
 </style>
