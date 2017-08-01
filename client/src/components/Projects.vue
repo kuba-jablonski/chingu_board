@@ -27,7 +27,7 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item">
-                                Submitted by {{ project.creator }}
+                                Submitted by {{ project.creatorSlack }}
                             </div>
                         </div>
                     </div>

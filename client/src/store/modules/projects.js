@@ -17,7 +17,15 @@ const actions = {
         projectRef.on('value', snap => {
             let projects = [];
             snap.forEach(snap => {
-                projects.push(snap.val());
+                const project = snap.val();
+                const creatorRef = firebase.database().ref(`users/${project.details.creator}/aboutMe`);
+                creatorRef.once('value', snap => {
+                    const creator = snap.val();
+                    project.creatorSlack = 
+                        creator !== null && creator.chingu
+                        ? creator.chingu
+                        : 'Anonymous';
+                }).then(() => projects.push(project));
             });
             commit('SET_PROJECTS', projects);
         });
