@@ -1,25 +1,13 @@
 import firebase from 'firebase';
 
 const state = {
-    user: {
-        aboutMe: {
-            firstName: '',
-            lastName: '',
-            livingIn: '',
-            introduction: '',
-            chingu: ''
-        },
-        skills: [],
-        links: {
-            portfolio: '',
-            github: ''
-        }
-    },
+    user: null,
     edit: {
         aboutMe: false,
         skills: false,
         links: false
-    }  
+    },
+    linkedUser: null  
 };
 
 const mutations = {
@@ -37,6 +25,9 @@ const mutations = {
     },
     SET_USER_PROFILE(state, user) {
         state.user = user;
+    },
+    SET_LINKED_USER_PROFILE(state, user) {
+        state.linkedUser = user;
     }
 };
 
@@ -51,16 +42,28 @@ const actions = {
 
 const getters = {
     fullName(state) {
-        return state.user.aboutMe.firstName + ' ' + state.user.aboutMe.lastName;
+        if (state.linkedUser || state.user)
+        return state.linkedUser 
+            ? state.linkedUser.aboutMe.firstName + ' ' + state.linkedUser.aboutMe.lastName
+            : state.user.aboutMe.firstName + ' ' + state.user.aboutMe.lastName;
     },
     aboutMe(state) {
-        return state.user.aboutMe;
+        if (state.linkedUser || state.user)
+        return state.linkedUser 
+            ? state.linkedUser.aboutMe  
+            : state.user.aboutMe;
     },
     skills(state) {
-        return state.user.skills;
+        if (state.linkedUser || state.user)
+        return state.linkedUser 
+            ? state.linkedUser.skills
+            : state.user.skills
     },
     links(state) {
-        return state.user.links;
+        if (state.linkedUser || state.user)
+        return state.linkedUser 
+            ? state.linkedUser.links
+            : state.user.links
     }
 }
 

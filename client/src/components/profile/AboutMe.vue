@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">
+                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">
                     edit
                     <span class="icon is-small">
                         <i class="fa fa-pencil"></i>
@@ -31,6 +31,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
+    props: ['personalProfile'],
     computed: {
         ...mapGetters([
             'aboutMe',

@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
+                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
                     edit
                     <span class="icon is-small">
                         <i class="fa fa-pencil"></i>
@@ -40,6 +40,7 @@
 
 <script>
 export default {
+    props: ['personalProfile'],
     computed: {
         links() {
             return this.$store.getters.links;

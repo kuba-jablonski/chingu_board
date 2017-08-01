@@ -24,5 +24,6 @@ export const routes = [
             store.state.authenticated ? next() : router.push('/');
         } 
     },
-    { path: '/project/:id', component: ProjectDetails }
+    { path: '/project/:id', component: ProjectDetails },
+    { path: '/user/:id', component: Profile }
 ];

@@ -27,7 +27,12 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item">
-                                Submitted by {{ project.creatorSlack }}
+                                Submitted by &nbsp
+                                <router-link 
+                                    v-if="project.creatorSlack !== 'Anonymous'" 
+                                    :to="`/user/${project.details.creator}`"
+                                >{{ project.creatorSlack }}</router-link>
+                                <span v-if="project.creatorSlack === 'Anonymous'" >an anonymous user</span>
                             </div>
                         </div>
                     </div>

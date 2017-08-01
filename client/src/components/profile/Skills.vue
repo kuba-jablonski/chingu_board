@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="level-right">
-                <a @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
+                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
                     edit
                     <span class="icon is-small">
                         <i class="fa fa-pencil"></i>
@@ -28,6 +28,7 @@
 
 <script>
 export default {
+    props: ['personalProfile'],
     data() {
         return {
             skillLevel: ''

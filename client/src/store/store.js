@@ -33,7 +33,8 @@ export default new Vuex.Store({
                         firstName: '',
                         lastName: '',
                         livingIn: '',
-                        introduction: ''
+                        introduction: '',
+                        chingu: ''
                     },
                     skills: [],
                     links: {

@@ -1,8 +1,8 @@
 <template>
     <section class="container">
-        <h2 class="details-box-heading title has-text-centered is-5">Your Profile</h2>
+        <h2 class="details-box-heading title has-text-centered is-5">{{ personalProfile ? 'Your Profile' : 'User Profile' }}</h2>
         <div class="details-box box">
-            <div class="column is-half is-offset-one-quarter">
+            <!-- <div class="column is-half is-offset-one-quarter">
                 <h1 class="title has-text-centered">My Projects</h1>
             </div>
             <div class="tile is-ancestor">
@@ -24,11 +24,11 @@
                         <p class="line-break">{{ project.details.description | snippet}}</p>
                     </article>
                 </router-link>
-            </div>
+            </div>  -->
             
-            <component :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
-            <component :is="edit.skills ? 'app-skills-edit' : 'app-skills'"></component>
-            <component :is="edit.links ? 'app-links-edit' : 'app-links'"></component>
+            <component :personalProfile="personalProfile" :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
+            <component :personalProfile="personalProfile" :is="edit.skills ? 'app-skills-edit' : 'app-skills'"></component>
+            <component :personalProfile="personalProfile" :is="edit.links ? 'app-links-edit' : 'app-links'"></component>
         </div>
     </section>
 </template>
@@ -40,6 +40,8 @@ import Skills from './Skills.vue';
 import SkillsEdit from './SkillsEdit.vue';
 import Links from './Links.vue';
 import LinksEdit from './LinksEdit.vue';
+
+import firebase from 'firebase'
 
 export default {
     components: {
@@ -54,17 +56,27 @@ export default {
         edit() {
             return this.$store.state.profile.edit;
         },
-        myProjects(){   
-            return this.$store.state.projects.projects
-                .filter(project => project.details.creator === this.$store.state.uid);
+        personalProfile() {
+            return this.$route.path === '/profile';
         }
     },
-    filters: {
-        snippet(value){
-            return value.slice(0,100) + '...';
+    beforeRouteLeave(to, from, next) {
+        this.$store.commit('TOGGLE_EDIT', { component: 'aboutMe', active: false });
+        this.$store.commit('TOGGLE_EDIT', { component: 'skills', active: false });
+        this.$store.commit('TOGGLE_EDIT', { component: 'links', active: false });
+        this.$store.commit('SET_LINKED_USER_PROFILE', null);
+        next();
+    },
+    beforeRouteEnter(to, from, next) {
+        if (to.path === '/profile') {
+            next();
         }
-    }
-        
+
+        firebase.database().ref(`users/${to.params.id}`)
+            .once('value', snap => {
+                next(vm => vm.$store.commit('SET_LINKED_USER_PROFILE', snap.val()));
+            });
+    }     
 }
 
 </script>
