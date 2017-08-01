@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <br>
-                    <p class="line-break">{{ project.details.description}}</p>
+                    <p class="line-break">{{ project.details.description | snippet}}</p>
                 </article>
             </router-link>
         </div>
@@ -51,6 +51,11 @@ export default {
         filteredProjects() {
             return this.$store.getters.filteredProjects(this.search);
         }
+    },
+    filters: {
+        snippet(value){
+            return value.slice(0,100) + '...';
+        }
     }
 }
 
@@ -60,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/settings.scss';
-.is-ancestor {
+.is-ancestor, {
     flex-wrap: wrap;
 }
 .header {

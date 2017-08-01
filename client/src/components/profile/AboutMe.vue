@@ -17,7 +17,7 @@
         </div>
         <br>
         <p>Name</p>
-        <p>{{ fullName }}</p>
+        <p>{{ fullName }} - @{{aboutMe.chingu}}</p>
         <br>
         <p>Living in</p>
         <p>{{ aboutMe.livingIn }}</p>

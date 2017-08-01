@@ -57,6 +57,8 @@ export default {
     color: white;
     font-weight: normal;
 }
+    
+
 
 #skills {
     flex-wrap: wrap;

@@ -90,9 +90,9 @@
                 </div>
                 <div v-for="(skill, index) in project.candidate.skills" :key="skill.name" class="level">
                     <div class="level-left">
-                        <div class="level-item">{{ skill.name }}</div>
-                        <a class="level-item tag" @click="skill.required = 'Required'" :class="{'is-black': skill.required === 'Required'}">Required</a>
-                        <a class="level-item tag" @click="skill.required = 'Optional'" :class="{'is-black': skill.required === 'Optional'}">Optional</a>
+                        <div class="level-item skill-name">{{ skill.name }}</div>
+                        <a class="level-item tag" @click="skill.required = 'Required'" :class="{'Required': skill.required === 'Required'}">Required</a>
+                        <a class="level-item tag" @click="skill.required = 'Optional'" :class="{'Optional': skill.required === 'Optional'}">Optional</a>
                     </div>
                     <div class="level-right">
                         <div @click="project.candidate.skills.splice(index, 1)" class="level-item delete"></div>
@@ -130,8 +130,8 @@
                 <div class="control">
                     <button class="button is-primary is-outlined" @click="newProject">Add another project</button>
                 </div>
-            </div> -->
-        </div>
+            </div> 
+        </div> -->
     </section>
 </template>
 
@@ -183,11 +183,7 @@ export default {
         //     this.project = this.$store.state.empty.project;
         //     location.href = '#top';
         // }
-    },
-    // created(){
-        
-    //     console.log(this.$store.state.empty.project);
-    // }
+    }
 }
 </script>
 
@@ -202,5 +198,17 @@ export default {
     
 .select-item {
     margin-right: 20px;
+}
+.skill-name {
+    font-weight: bold;
+}
+.Required {
+    color: white;
+    background: $color4;
+}
+
+.Optional {
+    color: white;
+    background: $color3;
 }
 </style>
