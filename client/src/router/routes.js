@@ -6,12 +6,23 @@ import Profile from '../components/profile/Profile.vue';
 import ProjectCreate from '../components/project/ProjectCreate.vue';
 import ProjectDetails from '../components/project/ProjectDetails.vue';
 
+import store from '../store/store';
+import { router } from './router';
+
 export const routes = [
     { path: '', component: Home},
     { path: '/projects', component: Projects },
     { path: '/signin', component: Signin },
     { path: '/signup', component: Signup },
-    { path: '/profile', component: Profile },
-    { path: '/project/create', component: ProjectCreate },
+    { path: '/profile', component: Profile, 
+        beforeEnter(to, from, next) {
+            store.state.authenticated ? next() : router.push('/');
+        } 
+    },
+    { path: '/project/create', component: ProjectCreate,
+        beforeEnter(to, from, next) {
+            store.state.authenticated ? next() : router.push('/');
+        } 
+    },
     { path: '/project/:id', component: ProjectDetails }
 ];
