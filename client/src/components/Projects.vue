@@ -54,7 +54,7 @@ export default {
     },
     filters: {
         snippet(value){
-            return value.slice(0,100) + '...';
+            return value.length <= 100 ? value : value.slice(0,100) + '...';
         }
     }
 }
