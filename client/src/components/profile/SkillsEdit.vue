@@ -32,11 +32,11 @@
             </p>
         </div>
         <div v-for="(skill, index) in skills" :key="skill.name" class="level">
-            <div class="level-left">
+            <div class="level-left skill-item">
                 <div class="level-item">{{ skill.name }}</div>
-                <a class="level-item tag" @click="skill.level = 'Beginner'" :class="{'is-black': skill.level === 'Beginner'}">Beginner</a>
-                <a class="level-item tag" @click="skill.level = 'Intermediate'" :class="{'is-black': skill.level === 'Intermediate'}">Intermediate</a>
-                <a class="level-item tag" @click="skill.level = 'Advanced'" :class="{'is-black': skill.level === 'Advanced'}">Advanced</a>
+                <a class="level-item tag" @click="skill.level = 'Beginner'" :class="{'Beginner': skill.level === 'Beginner'}">Beginner</a>
+                <a class="level-item tag" @click="skill.level = 'Intermediate'" :class="{'Intermediate': skill.level === 'Intermediate'}">Intermediate</a>
+                <a class="level-item tag" @click="skill.level = 'Advanced'" :class="{'Advanced': skill.level === 'Advanced'}">Advanced</a>
             </div>
             <div class="level-right">
                 <div @click="skills.splice(index, 1)" class="level-item delete"></div>
@@ -94,3 +94,35 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../assets/styles/settings.scss';
+    
+.skill-item {
+    margin: 0 10px 10px 0;
+    padding: 5px;    
+    background: $color1;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.tag {
+    border-radius: 3px;
+    color: white;
+    font-weight: normal;
+}
+
+.Beginner {
+    background: $color3;
+}
+
+.Intermediate {
+    background: $color2;
+}
+
+.Advanced {
+    background: $primary;
+}
+    
+    
+</style>
