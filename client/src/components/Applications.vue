@@ -8,7 +8,7 @@
         </ul>
         <h1>Outgoing applications:</h1>
         <ul>
-            <li v-for="app in myIncomingApplications" :key="app.id">
+            <li v-for="app in myOutgoingApplications" :key="app.id">
                 You offered to help <router-link :to="`/user/${app.creator}`">{{ app.creatorSlack }}</router-link> with <router-link :to="`/project/${app.project}`">{{ app.projectName }}</router-link>. 
             </li>            
         </ul>
