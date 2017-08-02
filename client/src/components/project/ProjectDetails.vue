@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <br>
-                <button class="button is-primary">Apply for this project</button>
+                <button @click="apply" class="button is-primary">Apply for this project</button>
             </div>
         </div>
     </section>
@@ -41,6 +41,24 @@ export default {
         project() {
             return this.$store.state.projects.projects
                 .find(project => project.id === this.$route.params.id);
+        }
+    },
+    methods: {
+        apply() {
+            const application = {
+                user: this.$store.state.uid,
+                userSlack: this.$store.getters.aboutMe.chingu,
+                project: this.project.id,
+                projectName: this.project.details.name,
+                status: 'Pending'
+            };
+
+            const appRef = this.$firebase.database().ref(`/projects/${this.project.id}/applications`).push();
+            const appId = appRef.key;
+            appRef.set(application);
+
+            this.$firebase.database().ref(`/users/${this.$store.state.uid}/applications`)
+                .set(application)
         }
     }
 }

@@ -46,7 +46,7 @@ export default new Vuex.Store({
                 if (user) {
                     commit('AUTH', true);
                     commit('UID', user.uid);
-
+                    commit('SET_USER_PROFILE', emptyProfile);
                     const usersRef = firebase.database().ref('users');
                     usersRef.once('value', snap => {
                         if (!snap.hasChild(user.uid)) {
