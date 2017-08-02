@@ -45,20 +45,28 @@ export default {
     },
     methods: {
         apply() {
+            // if (this.)
+
+
+            const appRef = this.$firebase.database().ref(`/projects/${this.project.id}/applications`).push();
+            const appId = appRef.key;
+
             const application = {
+                id: appId,
                 user: this.$store.state.uid,
                 userSlack: this.$store.getters.aboutMe.chingu,
                 project: this.project.id,
                 projectName: this.project.details.name,
+                creator: this.project.details.creator,
+                creatorSlack: this.project.creatorSlack,
                 status: 'Pending'
             };
-
-            const appRef = this.$firebase.database().ref(`/projects/${this.project.id}/applications`).push();
-            const appId = appRef.key;
+          
+            this.$firebase.database().ref(`/users/${this.project.details.creator}/incomingApplications/${appId}`)
+                .set(application);
+            this.$firebase.database().ref(`/users/${this.$store.state.uid}/outgoingApplications/${appId}`)
+                .set(application);
             appRef.set(application);
-
-            this.$firebase.database().ref(`/users/${this.$store.state.uid}/applications`)
-                .set(application)
         }
     }
 }

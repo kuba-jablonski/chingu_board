@@ -64,7 +64,17 @@ const getters = {
         return state.linkedUser 
             ? state.linkedUser.links
             : state.user.links
-    }
+    },
+    myOutgoingApplications(state) {
+        if (state.user && state.user.hasOwnProperty('outgoingApplications')) {
+            return state.user.outgoingApplications;
+        }
+    },
+    myIncomingApplications(state) {
+        if (state.user && state.user.hasOwnProperty('incomingApplications')) {
+            return state.user.incomingApplications;
+        }
+    }    
 }
 
 export default {
