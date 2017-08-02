@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <br>
-                <p class="line-break">{{ project.details.description | snippet}}</p>
+                <p class="line-break">{{ project.details.description | snippet }}</p>
             </article>
         </router-link>
     </div>
@@ -25,12 +25,13 @@
 
 <script>
 export default {
+    
     props: ['projects'],
     filters: {
         snippet(value){
             return value.length <= 100 ? value : value.slice(0,100) + '...';
         }
-    },
+    }
 }
 </script>
 
