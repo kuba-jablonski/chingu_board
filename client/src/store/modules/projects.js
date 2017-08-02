@@ -36,12 +36,16 @@ const getters = {
     projects(state) {
         return state.projects;
     },
-    filteredProjects(state) {
+    filterProjectsByTitle(state) {
         return search => {
             return state.projects.filter((project) => {
                 return project.details.name.toLowerCase().match(search.toLowerCase());
             });
         }
+    },
+    myProjects(state, getters, rootState){  
+        return state.projects
+            .filter(project => project.details.creator === rootState.uid);
     }
 }
 

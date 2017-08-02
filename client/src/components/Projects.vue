@@ -16,36 +16,14 @@
             </div>
         </div> 
         
-        <div class="tile is-ancestor">
-            <router-link :to="`/project/${project.id}`" v-for="project in filteredProjects" :key="project.id" class="tile is-parent is-4">
-                <article class="tile is-child box">
-                    <div class="level">
-                        <div class="level-item">
-                            <p class="title is-3">{{ project.details.name }}</p>
-                        </div>
-                    </div>
-                    <div class="level">
-                        <div class="level-left">
-                            <div class="level-item">
-                                Submitted by &nbsp
-                                <router-link 
-                                    v-if="project.creatorSlack !== 'Anonymous'" 
-                                    :to="`/user/${project.details.creator}`"
-                                >{{ project.creatorSlack }}</router-link>
-                                <span v-if="project.creatorSlack === 'Anonymous'" >an anonymous user</span>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <p class="line-break">{{ project.details.description | snippet}}</p>
-                </article>
-            </router-link>
-        </div>
+        <app-project-tiles :projects="filteredProjects"></app-project-tiles>
         
     </section>
 </template>
 
 <script>
+import ProjectTiles from './project/ProjectTiles.vue';
+
 export default {
     data() {
         return {
@@ -54,13 +32,11 @@ export default {
     },
     computed: {
         filteredProjects() {
-            return this.$store.getters.filteredProjects(this.search);
+            return this.$store.getters.filterProjectsByTitle(this.search);
         }
     },
-    filters: {
-        snippet(value){
-            return value.length <= 100 ? value : value.slice(0,100) + '...';
-        }
+    components: {
+        appProjectTiles: ProjectTiles
     }
 }
 
@@ -78,9 +54,5 @@ export default {
 }
 .search{
     margin-top: 40px;
-}
-.line-break {
-    white-space: pre;
-    white-space: pre-line;
 }
 </style>

@@ -5,6 +5,7 @@ import Signup from '../components/account/Signup.vue';
 import Profile from '../components/profile/Profile.vue';
 import ProjectCreate from '../components/project/ProjectCreate.vue';
 import ProjectDetails from '../components/project/ProjectDetails.vue';
+import MyProjects from '../components/MyProjects.vue';
 
 import store from '../store/store';
 import { router } from './router';
@@ -25,5 +26,10 @@ export const routes = [
         } 
     },
     { path: '/project/:id', component: ProjectDetails },
-    { path: '/user/:id', component: Profile }
+    { path: '/user/:id', component: Profile },
+    { path: '/my-projects', component: MyProjects,
+        beforeEnter(to, from, next) {
+            store.state.authenticated ? next() : router.push('/');
+        } 
+    }
 ];

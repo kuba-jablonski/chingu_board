@@ -68,7 +68,9 @@ export default new Vuex.Store({
                     commit('AUTH', false);
                     commit('UID', null);
                     commit('SET_USER_PROFILE', emptyProfile);
-                    if (state.route.path === '/profile' || state.route.path === '/project/create') {
+                    if (state.route.path === '/profile' 
+                    || state.route.path === '/project/create' 
+                    || state.route.path === '/my-projects') {
                         router.push('/projects');
                     }
                 }
