@@ -64,11 +64,7 @@ export default {
                 }
             }
 
-            const appRef = this.$firebase.database().ref(`/projects/${this.project.id}/applications`).push();
-            const appId = appRef.key;
-
             const application = {
-                id: appId,
                 user: this.$store.state.uid,
                 userSlack: this.$store.getters.aboutMe.chingu,
                 project: this.project.id,
@@ -78,11 +74,11 @@ export default {
                 status: 'Pending'
             };
           
-            this.$firebase.database().ref(`/users/${this.project.details.creator}/incomingApplications/${appId}`)
-                .set(application);
+            const appRef = this.$firebase.database().ref(`/users/${this.project.details.creator}/incomingApplications/`).push();
+            const appId = appRef.key;
+            appRef.set(application);
             this.$firebase.database().ref(`/users/${this.$store.state.uid}/outgoingApplications/${appId}`)
                 .set(application);
-            appRef.set(application);
         }
     }
 }
