@@ -25,10 +25,12 @@
                     </article>
                 </router-link>
             </div>  -->
-            
             <component :personalProfile="personalProfile" :is="edit.aboutMe ? 'app-about-me-edit' : 'app-about-me'"></component>
-            <component :personalProfile="personalProfile" :is="edit.skills ? 'app-skills-edit' : 'app-skills'"></component>
-            <component :personalProfile="personalProfile" :is="edit.links ? 'app-links-edit' : 'app-links'"></component>
+            <hr>
+            <div class="columns">
+                <component :personalProfile="personalProfile" :is="edit.skills ? 'app-skills-edit' : 'app-skills'"></component>
+                <component :personalProfile="personalProfile" :is="edit.links ? 'app-links-edit' : 'app-links'"></component>
+            </div>
         </div>
     </section>
 </template>

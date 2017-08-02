@@ -16,11 +16,10 @@
                 <p class="line-break">{{ project.details.description }}</p>
             </div>
             <div class="box">
-                <p>Looking for:</p>
-                <br>
+                <p class="subtitle is-4">Looking for:</p>
                 <p class="line-break">{{ project.candidate.description }}</p>
                 <br>
-                <p>Skills:</p>
+                <p class="subtitle is-spaced is-4">Skills:</p>
                 <div id="skills" class="is-flex">
                     <div v-for="skill in project.candidate.skills" :key="skill.name" class="skill-item">
                         {{ skill.name }}
@@ -49,18 +48,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/details-box.scss';
-/*
+
 .skill-item {
     margin: 0 10px 10px 0;
-    padding: 5px;    
-    color: white;
-    background: #485563;
-    border-radius: 5px;
-}
-*/ 
-.skill-item {
-    margin: 0 10px 10px 0;
-    padding: 5px;    
+    padding: 5px;
+    color: $color4;
     background: $color1;
     border-radius: 5px;
     font-weight: bold;

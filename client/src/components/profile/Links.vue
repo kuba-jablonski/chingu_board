@@ -1,22 +1,20 @@
 <template>
-    <div class="section">
-        <div class="level is-mobile">
-            <div class="level-left">
-                <div class="level-item">
-                    <p class="subtitle is-5">Links</p>
-                </div>
-            </div>
-            <div class="level-right">
-                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
-                    edit
-                    <span class="icon is-small">
-                        <i class="fa fa-pencil"></i>
-                    </span>
-                </a>
-            </div>
+    <div class="column is-half divider">
+        <div class="is-pulled-right">
+            <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
+                edit
+                <span class="icon is-small">
+                    <i class="fa fa-pencil"></i>
+                </span>
+            </a>
         </div>
-        
-        <div class="field is-grouped">
+        <br> 
+        <p class="subtitle is-4 has-text-centered">Links
+            <span class="icon">
+                <i class="fa fa-link"></i>
+            </span>
+        </p>
+        <div class="field is-grouped is-grouped-centered">
             <p class="control has-icon-left">
                 <a :href="links.portfolio" target="_blank" class="button portfolio">
                     <span class="icon">
@@ -33,7 +31,6 @@
                     <span>Github</span>
                 </a>
             </p>
-          
         </div>
     </div>
 </template>
@@ -51,7 +48,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/styles/settings.scss';
-
+@import '~bulma/sass/utilities/mixins';
+    
 .portfolio{
     color: white;
     background: $color3;
@@ -59,5 +57,15 @@ export default {
 .portfolio:hover{
     color: white;
     background: $primary;
+}
+
+.divider{
+    /*@include tablet {
+        border-left: 1px solid $color1;
+    }*/
+    @include mobile {
+        border-top: 1px solid $color1;
+    }
+    
 }
 </style>

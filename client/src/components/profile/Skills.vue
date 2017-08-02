@@ -1,27 +1,32 @@
 <template>
-    <div class="section">
-        <div class="level is-mobile">
-            <div class="level-left">
-                <div class="level-item">
-                    <p class="subtitle is-5">Skills</p>
-                </div>
-            </div>
-            <div class="level-right">
-                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
-                    edit
-                    <span class="icon is-small">
-                        <i class="fa fa-pencil"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div id="skills" class="is-flex is-grouped is-grouped-centered">
-            <div v-for="skill in skills" :key="skill.name" class="skill-item">
-                {{ skill.name }}
-                <span class="tag is-primary" :class="skill.level">
-                    {{ skill.level }}
+    <div class="column is-half">
+        <div class="is-pulled-right">
+            <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
+                edit
+                <span class="icon is-small">
+                    <i class="fa fa-pencil"></i>
                 </span>
-            </div>
+            </a>
+        </div>
+        <br>
+        <div class="has-text-centered">
+            <p class="subtitle is-4">Skills
+                <span class="icon">
+                    <i class="fa fa-superpowers"></i>
+                </span>
+            </p>
+            <!-- create buttons with tags instead! -->
+            
+            <div class="field is-grouped is-grouped-centered">
+                <p v-for="skill in skills" :key="skill.name" class="control">
+                    <a class="button is-static skill-item">
+                    {{ skill.name }}
+                        <span class="tag" :class="skill.level">
+                            {{ skill.level }}
+                        </span>
+                    </a>
+                </p>
+            </div>   
         </div>
     </div>
 </template>
@@ -49,17 +54,18 @@ export default {
     margin: 0 10px 10px 0;
     padding: 5px;    
     background: $color1;
+    color: $color4;
     border-radius: 5px;
     font-weight: bold;
 }
 
 .tag {
     border-radius: 3px;
+    margin: 3px;
+    padding: 3px;
     color: white;
     font-weight: normal;
-}
-    
-
+}  
 
 #skills {
     flex-wrap: wrap;
@@ -75,7 +81,6 @@ export default {
 
 .Advanced {
     background: $primary;
-}
-    
+} 
     
 </style>

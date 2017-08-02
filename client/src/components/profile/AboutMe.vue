@@ -1,30 +1,40 @@
 <template>
-    <div class="box">
-        <div class="level is-mobile">
-            <div class="level-left">
-                <div class="level-item">
-                    <p class="subtitle is-5">About me</p>
+    <section>
+        <div class="columns">
+            <div class="column is-12">
+                <div class="is-pulled-right">
+                    <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">
+                        edit
+                        <span class="icon is-small">
+                            <i class="fa fa-pencil"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
-            <div class="level-right">
-                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'aboutMe', active: true})">
-                    edit
-                    <span class="icon is-small">
-                        <i class="fa fa-pencil"></i>
+        </div>
+        <div class="columns">
+            <div class="column is-half">
+                <div class="has-text-centered">
+                    <p class="subtitle is-4">About me 
+                        <span class="icon is-medium">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </p>
+                    <p><span class="chingu">@{{aboutMe.chingu}}</span><br /><strong>{{ fullName }}</strong> </p>
+                    <p>{{ aboutMe.livingIn }}</p>
+                </div>
+            </div>
+            <div class="column is-half has-text-centered">
+
+                <p class="subtitle is-4">Introduction
+                    <span class="icon">
+                        <i class="fa fa-file-text"></i>
                     </span>
-                </a>
+                </p>
+                <p class="line-break">{{ aboutMe.introduction }}</p>
             </div>
         </div>
-        <br>
-        <p>Name</p>
-        <p>{{ fullName }} - @{{aboutMe.chingu}}</p>
-        <br>
-        <p>Living in</p>
-        <p>{{ aboutMe.livingIn }}</p>
-        <br>
-        <p>Introduction</p>
-        <p class="line-break">{{ aboutMe.introduction }}</p>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -46,5 +56,9 @@ export default {
 .line-break {
     white-space: pre;
     white-space: pre-line;
+}
+.chingu {
+    font-size: 3em;
+    font-style: italic;
 }
 </style>
