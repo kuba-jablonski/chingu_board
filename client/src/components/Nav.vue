@@ -19,7 +19,10 @@
                 </router-link>
                 <router-link v-if="authed" to="/my-projects" tag="a" class="navbar-item">
                     My Projects
-                </router-link>                
+                </router-link>
+                <router-link v-if="authed" to="/applications" tag="a" class="navbar-item">
+                    Applications
+                </router-link>                   
             </div>
     
             <div class="navbar-end">

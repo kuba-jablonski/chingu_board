@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section v-if="project" class="container">
         <h2 class="details-box-heading title has-text-centered is-5">Project Details</h2>
         <div class="details-box box">
             <div class="box">
@@ -45,8 +45,24 @@ export default {
     },
     methods: {
         apply() {
-            // if (this.)
+            if (!this.$store.state.authenticated) {
+                throw 'Must be logged in.';
+            }   
+            if (this.$store.getters.aboutMe.chingu === "") {
+                throw 'Slack username is required.';
+            }
 
+            if (this.project.details.creator === this.$store.state.uid) {
+                throw "Can't apply for own project.";
+            }
+
+            if (this.$store.getters.myOutgoingApplications) {
+                for (let app in this.$store.getters.myOutgoingApplications) {
+                    if (this.$store.getters.myOutgoingApplications[app].project === this.project.id) {
+                        throw "Can't apply twice.";
+                    }
+                }
+            }
 
             const appRef = this.$firebase.database().ref(`/projects/${this.project.id}/applications`).push();
             const appId = appRef.key;

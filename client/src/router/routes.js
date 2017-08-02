@@ -33,5 +33,9 @@ export const routes = [
             store.state.authenticated ? next() : router.push('/');
         } 
     },
-    { path: '/applications', component: Applications }
+    { path: '/applications', component: Applications,
+        beforeEnter(to, from, next) {
+            store.state.authenticated ? next() : router.push('/');
+        } 
+    }
 ];
