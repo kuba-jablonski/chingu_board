@@ -14,22 +14,22 @@
     
         <div :class="{'is-active': showDropdown}" id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-                <router-link to="/projects" tag="a" class="navbar-item">
+                <router-link to="/projects" tag="a" class="navbar-item view-link" active-class="view-link-active" exact>
                     Explore Projects
                 </router-link>
-                <router-link v-if="authed" to="/my-projects" tag="a" class="navbar-item">
+                <router-link v-if="authed" to="/my-projects" tag="a" class="navbar-item view-link" active-class="view-link-active" exact>
                     My Projects
                 </router-link>
-                <router-link v-if="authed" to="/applications" tag="a" class="navbar-item">
+                <router-link v-if="authed" to="/applications" tag="a" class="navbar-item view-link" active-class="view-link-active" exact>
                     Applications
                 </router-link>                   
             </div>
     
             <div class="navbar-end">
-                    <router-link v-if="authed" to="/project/create" tag="a" class="navbar-item">
+                    <router-link v-if="authed" to="/project/create" tag="a" class="navbar-item view-link" active-class="view-link-active" exact>
                         Create a New Project
                     </router-link>
-                    <router-link v-if="authed" to="/profile" tag="a" class="navbar-item">
+                    <router-link v-if="authed" to="/profile" tag="a" class="navbar-item view-link" active-class="view-link-active" exact>
                         Profile
                     </router-link>
     
@@ -91,5 +91,14 @@ export default {
     top: 50;
     right: 0;
     z-index: 100;
+}
+
+.view-link {
+    font-size: $size-7;
+    text-transform: uppercase;
+}
+
+.view-link-active {
+    color: $primary
 }
 </style>
