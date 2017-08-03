@@ -38,12 +38,19 @@ export default {
     white-space: pre;
     white-space: pre-line;
 }
+    
 .is-child:hover .title, .is-child:hover p{
     color: white;
 }
+
+.is-child:hover a{
+    color: $color1;
+}    
+    
 .is-child:hover {
-    background: $color2;
+    background: $color3;
 }
+
 .project-name {
     text-transform: capitalize;
 }

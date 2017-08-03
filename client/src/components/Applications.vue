@@ -11,6 +11,24 @@
                 <ul>
                     <li v-for="app in myIncomingApplications" :key="app.id">
                         User <router-link :to="`/user/${app.user}`"><span class="names">{{ app.userSlack }}</span></router-link> offered to help you with <router-link :to="`/project/${app.project}`"><span class="names">{{ app.projectName }}</span></router-link>.
+                        
+                        <div class="field is-grouped">
+                          <p class="control">
+                            <a class="button is-primary">
+                              Save changes
+                            </a>
+                          </p>
+                          <p class="control">
+                            <a class="button">
+                              Cancel
+                            </a>
+                          </p>
+                          <p class="control">
+                            <a class="button is-danger">
+                              Delete post
+                            </a>
+                          </p>
+                        </div>
                     </li>
                 </ul>
                 <p v-if="!myIncomingApplications" class="has-text-centered">You don't have any incoming application to your project.<br>

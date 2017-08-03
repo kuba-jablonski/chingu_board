@@ -1,5 +1,5 @@
 <template>
-    <div class="column is-half divider">
+    <div class="column divider">
         <p class="subtitle is-4 has-text-centered">Links
             <span class="icon">
                 <i class="fa fa-link"></i>
@@ -23,13 +23,15 @@
                 </a>
             </p>
         </div>
-        <div class="is-pulled-right">
-            <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
-                edit
-                <span class="icon is-small">
-                    <i class="fa fa-pencil"></i>
-                </span>
-            </a>
+        <div>
+            <div class="has-text-right">
+                <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'links', active: true})">
+                    edit
+                    <span class="icon is-small">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 </template>

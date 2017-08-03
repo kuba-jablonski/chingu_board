@@ -65,18 +65,6 @@
                                 </span>
                             </p>
                         </div>
-                        
-                            <div class="field is-grouped is-grouped-centered">
-                                <p v-for="skill in skills" :key="skill.name" class="control">
-                                    <a class="button is-static skill-item">
-                                    {{ skill.name }}
-                                        <span class="tag" :class="skill.level">
-                                            {{ skill.level }}
-                                        </span>
-                                    </a>
-                                </p>
-                            </div>
-                        
                     </div>
                 </div>
             </div>

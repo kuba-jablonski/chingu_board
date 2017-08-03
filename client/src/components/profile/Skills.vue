@@ -1,5 +1,5 @@
 <template>
-    <div class="column is-half">
+    <div class="column">
         <div class="has-text-centered">
             <p class="subtitle is-4">Skills
                 <span class="icon">
@@ -17,8 +17,7 @@
                 </p>
             </div>   
         </div>
-        
-        <div class="is-pulled-right">
+        <div class="has-text-right">
             <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
                 edit
                 <span class="icon is-small">
@@ -26,7 +25,8 @@
                 </span>
             </a>
         </div>
-    </div>
+        </div>
+        
 </template>
 
 <script>
