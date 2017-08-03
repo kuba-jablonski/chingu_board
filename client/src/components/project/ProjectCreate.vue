@@ -2,24 +2,18 @@
     <section class="container" id="top">
         <h2 class="details-box-heading title has-text-centered is-5">Create a New Project</h2>
         <div class="details-box box">
-            <div class="box">
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <p class="subtitle is-5">About the project</p>
-                        </div>
-                    </div>
-                </div>
-                <br>
+            <div class="columns">
+            <div class="column is-5">
+                <h3 class="subtitle is-3 has-text-centered">About the project</h3>
                 <div class="field">
-                    <label class="label">Project Name</label>
+                    <label class="label is-large">Project Name</label>
                     <div class="control">
-                        <input v-model="project.details.name" class="input" type="text" placeholder="Text input">
+                        <input v-model="project.details.name" class="input" type="text" placeholder="Enter your project name">
                     </div>
                 </div>
                 <div class="is-flex">
                     <div class="field select-item">
-                        <label class="label">Team Size</label>
+                        <label class="label is-medium">Team Size</label>
                         <div class="control">
                             <div class="select">
                                 <select v-model="project.details.team">
@@ -29,7 +23,7 @@
                         </div>
                     </div>
                     <div class="field select-item">
-                        <label class="label">Commitment</label>
+                        <label class="label is-medium">Commitment</label>
                         <div class="control">
                             <div class="select">
                                 <select v-model="project.details.commitment">
@@ -40,36 +34,23 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">Project Description</label>
+                    <label class="label is-large">Project Description</label>
                     <div class="control">
-                        <textarea v-model="project.details.description" class="textarea" placeholder="Textarea"></textarea>
+                        <textarea v-model="project.details.description" class="textarea" placeholder="What's your project about?"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <p class="subtitle is-5">About the candidate</p>
-                        </div>
-                    </div>
-                </div>
-                <br>
+            <div class="column is-5 is-offset-1">
+                <h3 class="subtitle is-3 has-text-centered">About the candidate</h3>
                 <div class="field">
-                    <label class="label">Description</label>
+                    <label class="label is-large">Description</label>
                     <div class="control">
-                        <textarea v-model="project.candidate.description" class="textarea" placeholder="Textarea"></textarea>
+                        <textarea v-model="project.candidate.description" class="textarea" placeholder="Who should apply?"></textarea>
                     </div>
                 </div>
                 <br>
-                <div class="level is-mobile">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <p class="subtitle is-5">Desired Skills</p>
-                        </div>
-                    </div>
-                </div>
-                <label class="label">Add a new skill</label>
+                <p class="subtitle is-4">Desired Skills</p>
+                <label class="label is-medium">Add a new skill</label>
                 <div class="field has-addons">
                     <p class="control">
                         <span class="select">
@@ -99,6 +80,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="field is-grouped">
                 <div class="control">
                     <button @click="save" class="button is-primary">Save</button>
