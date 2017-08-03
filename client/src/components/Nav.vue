@@ -85,8 +85,8 @@ export default {
 
 #navMenu.navbar-menu.is-active{
     min-width: 120px;
+    background: rgba(181,194,199, 0.9);
     width: 90%;
-    background-color: white;
     position: absolute;
     top: 50;
     right: 0;

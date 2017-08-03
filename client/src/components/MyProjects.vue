@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/settings.scss';
+    
 .is-ancestor, {
     flex-wrap: wrap;
 }

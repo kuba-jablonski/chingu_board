@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="field">
             <label class="label">Living in</label>
             <div class="control">
@@ -79,6 +80,7 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '../../assets/styles/settings.scss';
 .columns {
     margin-bottom: 0;
 }

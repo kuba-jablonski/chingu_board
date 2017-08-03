@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="column">
         <div class="level is-mobile">
             <div class="level-left">
                 <div class="level-item">
@@ -10,28 +10,31 @@
                 <a @click="stopEdit" class="delete is-medium"></a>
             </div>
         </div>
-        <br>
         <div class="columns">
-            <div class="field column">
-                <label class="label">
-                    <span class="icon">
-                        <i class="fa fa-home"></i>
-                    </span>
-                    Portfolio
-                </label>
-                <div class="control">
-                    <input v-model="links.portfolio" class="input" type="text" placeholder="Link to your portfolio">
+            <div class="column">
+                <div class="field">
+                    <label class="label">
+                        <span class="icon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        Portfolio
+                    </label>
+                    <div class="control">
+                        <input v-model="links.portfolio" class="input" type="text" placeholder="Link to your portfolio">
+                    </div>
                 </div>
             </div>
-            <div class="field column">
-                <label class="label">
-                    <span class="icon">
-                        <i class="fa fa-github"></i>
-                    </span>
-                    Github
-                </label>
-                <div class="control">
-                    <input v-model="links.github" class="input" type="text" placeholder="https://github/...">
+            <div class="column">
+                <div class="field">
+                    <label class="label">
+                        <span class="icon">
+                            <i class="fa fa-github"></i>
+                        </span>
+                        Github
+                    </label>
+                    <div class="control">
+                        <input v-model="links.github" class="input" type="text" placeholder="https://github/...">
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,3 +71,6 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+@import '../../assets/styles/settings.scss';
+</style>
