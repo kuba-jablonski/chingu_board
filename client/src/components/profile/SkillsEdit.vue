@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="column">
         <div class="level is-mobile">
             <div class="level-left">
                 <div class="level-item">
@@ -10,7 +10,7 @@
                 <a @click="stopEdit" class="delete is-medium"></a>
             </div>
         </div>
-        <br>
+        
         <label class="label">Add a new skill</label>
         <div class="field has-addons">
             <p class="control">

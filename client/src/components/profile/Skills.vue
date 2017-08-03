@@ -1,22 +1,11 @@
 <template>
     <div class="column is-half">
-        <div class="is-pulled-right">
-            <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
-                edit
-                <span class="icon is-small">
-                    <i class="fa fa-pencil"></i>
-                </span>
-            </a>
-        </div>
-        <br>
         <div class="has-text-centered">
             <p class="subtitle is-4">Skills
                 <span class="icon">
                     <i class="fa fa-superpowers"></i>
                 </span>
-            </p>
-            <!-- create buttons with tags instead! -->
-            
+            </p>            
             <div class="field is-grouped is-grouped-centered">
                 <p v-for="skill in skills" :key="skill.name" class="control">
                     <a class="button is-static skill-item">
@@ -27,6 +16,15 @@
                     </a>
                 </p>
             </div>   
+        </div>
+        
+        <div class="is-pulled-right">
+            <a v-if="personalProfile" @click="$store.commit('TOGGLE_EDIT', {component: 'skills', active: true})">
+                edit
+                <span class="icon is-small">
+                    <i class="fa fa-pencil"></i>
+                </span>
+            </a>
         </div>
     </div>
 </template>
