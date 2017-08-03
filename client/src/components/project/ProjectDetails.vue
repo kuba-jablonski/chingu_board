@@ -17,7 +17,7 @@
                     <p class="line-break">{{ project.details.description }}</p>
                     <br>
                     
-                <button v-if="!(project.details.creator === $store.state.uid)" @click="apply" class="button is-primary">Apply for this project</button>
+                <button v-if="!(project.details.creator === $store.state.uid) && this.$store.state.authenticated" @click="apply" class="button is-primary">Apply for this project</button>
                     
                     <!-- modal for project deletion -->
                     
