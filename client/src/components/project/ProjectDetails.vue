@@ -4,8 +4,12 @@
         <div class="details-box box">
             <div class="columns">
                 <div class="column">
-                    <h2 class="title is-3">{{ project.details.name }}</h2>
-                    <p>Team:
+                    <h2 class="title is-3 has-text-centered">{{ project.details.name }}</h2>
+                    <p class="subtitle is-6 has-text-centered submitted">Submitted by&nbsp;
+                        <router-link v-if="project.creatorSlack !== 'Anonymous'" :to="`/user/${project.details.creator}`">{{ project.creatorSlack }}</router-link>
+                        <span v-if="project.creatorSlack === 'Anonymous'">an anonymous user</span>
+                    </p>
+                    <p class="has-text-centered">Team:
                         <span class="tag">
                             {{ project.details.team }}
                         </span> to commit: 
@@ -43,18 +47,36 @@
                     
                 </div>
                 <div class="column divider">
-                    <p class="title is-spaced is-3">Candidate Profile</p>
-                    <p class="subtitle is-5">Looking for:</p>
+                    <p class="title is-spaced is-3 has-text-centered">Candidate Profile</p>
+                    <p class="subtitle is-4 has-text-centered">Looking for:</p>
                     <p class="line-break">{{ project.candidate.description }}</p>
                     <br>
-                    <p class="subtitle is-spaced is-5">Skills:</p>
-                    <div id="skills" class="is-flex">
-                        <div v-for="skill in project.candidate.skills" :key="skill.name" class="skill-item">
-                            {{ skill.name }}
-                            <span class="tag" :class="skill.required">
-                                {{ skill.required }}
+                    <div class="has-text-centered">
+                        <p class="subtitle is-spaced is-4">Skills
+                            <span class="icon">
+                                <i class="fa fa-superpowers"></i>
                             </span>
+                        </p>
+                        <div id="skills" class="is-flex field is-grouped is-grouped-centered">
+                            <p v-for="skill in project.candidate.skills" :key="skill.name" class="button is-static skill-item">
+                                {{ skill.name }}
+                                <span class="tag" :class="skill.required">
+                                    {{ skill.required }}
+                                </span>
+                            </p>
                         </div>
+                        
+                            <div class="field is-grouped is-grouped-centered">
+                                <p v-for="skill in skills" :key="skill.name" class="control">
+                                    <a class="button is-static skill-item">
+                                    {{ skill.name }}
+                                        <span class="tag" :class="skill.level">
+                                            {{ skill.level }}
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                        
                     </div>
                 </div>
             </div>
@@ -70,6 +92,7 @@ export default {
             deleteConfirmed: false
         }
     },
+    props: ['projects'],
     computed: {
         project() {
             return this.$store.state.projects.projects
@@ -116,13 +139,17 @@ export default {
         },
         confirmDelete(){
             this.deleteConfirmed = true;
-            // set or update can return a promise to know when the update has been done
-            this.$firebase.database().ref('projects').child(this.project.id).set(null);
-            // or remove
-            //this.$firebase.database().ref('projects').child(this.$route.params.id).remove();
+            this.$firebase.database().ref('projects').child(this.$route.params.id).set(null)
+            .then(console.log('project deleted'))
+            .then(this.$router.go(-1))
+            //$router.push('/my-projects');
+            .catch(function(err){
+                console.log('err', err);
+            });              
         }
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -138,6 +165,9 @@ export default {
     }
     
 }
+.submitted {
+    font-weight: normal;
+}
     
 .skill-item {
     margin: 0 10px 10px 0;
@@ -147,9 +177,11 @@ export default {
     border-radius: 5px;
     font-weight: bold;
 }
-
+    
 .tag {
-    border-radius: 3px;
+   border-radius: 3px;
+    margin: 3px;
+    padding: 3px;
     background: $color2;
     color: white;
     font-weight: normal;

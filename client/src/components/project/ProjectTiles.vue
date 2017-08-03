@@ -22,16 +22,29 @@ export default {
     filters: {
         snippet(value){
             return value.length <= 100 ? value : value.slice(0,100) + '...';
+        },
+        toUppercase(value){
+            return value.toUpperCase();
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/details-box.scss';    
-    
+
+@import '../../assets/styles/details-box.scss';
+
 .line-break {
     white-space: pre;
     white-space: pre-line;
+}
+.is-child:hover .title, .is-child:hover p{
+    color: white;
+}
+.is-child:hover {
+    background: $color2;
+}
+.project-name {
+    text-transform: capitalize;
 }
 </style>
