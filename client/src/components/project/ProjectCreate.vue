@@ -172,10 +172,23 @@ export default {
             this.project.candidate.skills[payload.key] = payload.value;
         },
         save(){
+            // batter validation later
+            if (this.project.details.name.trim().length < 3) {
+                throw 'Project name is too short';
+            }
+            if (this.project.details.description.trim().length < 5) {
+                throw 'Project description is too short';
+            }            
+            if (this.project.candidate.description.trim().length < 5) {
+                throw 'Candidate description is too short';
+            }            
+
             const newProjectRef = this.$firebase.database().ref('projects').push();
             const projectId = newProjectRef.key;
             this.project.id = projectId;
-            newProjectRef.set(this.project);
+            newProjectRef.set(this.project).then(() => {
+                this.$router.push(`/project/${projectId}`);
+            })
             // this.saved = true;
         },
         // newProject(){
