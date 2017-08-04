@@ -22,9 +22,6 @@ export default {
     filters: {
         snippet(value){
             return value.length <= 100 ? value : value.slice(0,100) + '...';
-        },
-        toUppercase(value){
-            return value.toUpperCase();
         }
     }
 }
@@ -45,7 +42,7 @@ export default {
 
 .is-child:hover a{
     color: $color1;
-}    
+}
     
 .is-child:hover {
     background: $color3;
