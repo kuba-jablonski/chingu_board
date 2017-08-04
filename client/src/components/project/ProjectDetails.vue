@@ -137,9 +137,17 @@ export default {
                     .catch(e => reject(e));                    
             });
 
-            Promise.all([saveToIncoming, saveToOutgoing])
+            const saveToApplications = new Promise((resolve, reject) => {
+                this.$firebase.database()
+                    .ref(`/applications/${this.project.id}`)
+                    .set(application)
+                    .then(() => resolve())
+                    .catch(e => reject(e));                    
+            });
+
+            Promise.all([saveToIncoming, saveToOutgoing, saveToApplications])
                 .then(() => this.sendNotification('Application was sent!', 'success'))
-                .catch(e => this.sendNotification(e.message, 'error'))
+                .catch(e => this.sendNotification(e.message, 'error'));
         },
         confirmDelete(){
             this.deleteConfirmed = true;
