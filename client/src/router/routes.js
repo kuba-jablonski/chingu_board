@@ -38,12 +38,11 @@ export const routes = [
             store.state.authenticated ? next() : router.push('/');
         } 
     },
-    { path: '/project/edit/:id', component: ProjectCreate,
+    { path: '/project/edit/:id', component: ProjectCreate, name: 'projectEdit',
         beforeEnter(to, from, next) {
-            const project = store.getters.projects
-                                .find(project => project.id === to.params.id);
+            const project = store.getters.findProjectById(to.params.id);
 
-            project.details.creator === store.state.uid ? next() : router.push('/');                    
+            project && (project.details.creator === store.state.uid) ? next() : router.push('/');                    
         } 
     }   
 ];

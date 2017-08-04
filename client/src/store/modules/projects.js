@@ -46,6 +46,9 @@ const getters = {
     myProjects(state, getters, rootState){  
         return state.projects
             .filter(project => project.details.creator === rootState.uid);
+    },
+    findProjectById(state, getters) {
+        return id => getters.projects.find(project => project.id === id);
     }
 }
 
