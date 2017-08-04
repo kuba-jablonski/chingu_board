@@ -1,6 +1,5 @@
 <template>
-    <div class="tile is-ancestor">
-        
+    <div class="tile is-ancestor">        
         <router-link :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-4">
             <article class="tile is-child box">
                 <h3 class="title is-3 project-name">{{ project.details.name }}</h3>
@@ -17,7 +16,6 @@
 
 <script>
 export default {
-    
     props: ['projects'],
     filters: {
         snippet(value){
