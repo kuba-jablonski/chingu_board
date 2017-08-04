@@ -118,6 +118,8 @@
 </template>
 
 <script>
+import toast from '../../mixins/toast';
+
 export default {
     data() {
         return {
@@ -141,6 +143,7 @@ export default {
             // saved: false,
         }
     },
+    mixins: [toast],
     methods: {
         addNewSkill() {
             const newSkill = {
@@ -154,23 +157,23 @@ export default {
             this.project.candidate.skills[payload.key] = payload.value;
         },
         save(){
-            // batter validation later
             if (this.project.details.name.trim().length < 3) {
-                throw 'Project name is too short';
+                return this.sendNotification('Project name is too short.', 'danger');
             }
             if (this.project.details.description.trim().length < 5) {
-                throw 'Project description is too short';
+                return this.sendNotification('Project description is too short', 'danger');
             }            
             if (this.project.candidate.description.trim().length < 5) {
-                throw 'Candidate description is too short';
+                return this.sendNotification('Candidate description is too short', 'danger');
             }            
 
             const newProjectRef = this.$firebase.database().ref('projects').push();
             const projectId = newProjectRef.key;
             this.project.id = projectId;
             newProjectRef.set(this.project).then(() => {
+                this.sendNotification('Project was created!', 'success');
                 this.$router.push(`/project/${projectId}`);
-            })
+            }).catch(e => this.sendNotification(e.message, 'danger'))
             // this.saved = true;
         },
         // newProject(){
