@@ -74,7 +74,8 @@ export default new Vuex.Store({
                     if (state.route.path === '/profile' 
                     || state.route.path === '/project/create' 
                     || state.route.path === '/my-projects'
-                    || state.route.path === '/applications') {
+                    || state.route.path === '/applications'
+                    || state.route.name === 'projectEdit') {
                         router.push('/projects');
                     }
                 }

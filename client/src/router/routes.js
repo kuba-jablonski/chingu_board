@@ -37,5 +37,12 @@ export const routes = [
         beforeEnter(to, from, next) {
             store.state.authenticated ? next() : router.push('/');
         } 
-    }
+    },
+    { path: '/project/edit/:id', component: ProjectCreate, name: 'projectEdit',
+        beforeEnter(to, from, next) {
+            const project = store.getters.findProjectById(to.params.id);
+
+            project && (project.details.creator === store.state.uid) ? next() : router.push('/');                    
+        } 
+    }   
 ];

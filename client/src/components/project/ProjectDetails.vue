@@ -44,7 +44,8 @@
                     </div>
                 </div>
                 <button v-if="project.details.creator === $store.state.uid" @click="askDelete = !askDelete" class="button is-danger">Delete project</button>  
-                    
+                <router-link :to="`/project/edit/${project.id}`" v-if="project.details.creator === $store.state.uid" class="button">Edit project</router-link>
+
                 </div>
                 <div class="column divider">
                     <p class="title is-spaced is-3 has-text-centered">Candidate Profile</p>

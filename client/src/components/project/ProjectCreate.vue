@@ -1,6 +1,6 @@
 <template>
     <section class="container" id="top">
-        <h2 class="details-box-heading title has-text-centered is-5">Create a New Project</h2>
+        <h2 class="details-box-heading title has-text-centered is-5">{{ isEdit ? 'Project Edit' : 'Create a New Project' }}</h2>
         <div class="details-box box">
             <div class="columns">
             <div class="column is-5">
@@ -90,30 +90,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div v-if="saved">
-            <h3>Your project was saved!</h3>
-            <hr>
-            <h2 class="title is-5">{{ project.details.name }}</h2>
-            <p>For a team of : {{ project.details.team }}, {{ project.details.commitment }}</p>
-            <p class="subtitle is-5">Project description:</p>
-            <p>{{ project.details.description }}</p>
-            <hr>
-            <p class="subtitle is-5">About the candidate</p>
-            <p>{{ project.candidate.description }}</p>
-            <br>
-            <p class="subtitle is-5">Skills</p>
-            <ul>
-                <li v-for="(key, value) in project.candidate.skills" :key="key"><strong>{{value}}</strong> - ({{key}})</li>
-            </ul>
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-primary">Edit Project</button>
-                </div>
-                <div class="control">
-                    <button class="button is-primary is-outlined" @click="newProject">Add another project</button>
-                </div>
-            </div> 
-        </div> -->
     </section>
 </template>
 
@@ -140,7 +116,11 @@ export default {
                 required: 'Required',
                 name: ''
             },
-            // saved: false,
+        }
+    },
+    computed: {
+        isEdit() {
+            return this.$route.name === 'projectEdit';
         }
     },
     mixins: [toast],
@@ -156,6 +136,24 @@ export default {
         changeValue(payload) {
             this.project.candidate.skills[payload.key] = payload.value;
         },
+        createProject() {
+            const newProjectRef = this.$firebase.database().ref('projects').push();
+            const projectId = newProjectRef.key;
+            this.project.id = projectId;
+            newProjectRef.set(this.project).then(() => {
+                this.sendNotification('Project was created!', 'success');
+                this.$router.push(`/project/${projectId}`);
+            }).catch(e => this.sendNotification(e.message, 'danger'))
+        },
+        updateProject() {
+            this.$firebase.database().ref(`projects/${this.project.id}`)
+                .set(this.project)
+                .then(() => {
+                    this.sendNotification('Project was updated!', 'success');
+                    this.$router.push(`/project/${this.project.id}`);
+                })
+                .catch(e => this.sendNotification(e.message, 'danger'))            
+        }, 
         save(){
             if (this.project.details.name.trim().length < 3) {
                 return this.sendNotification('Project name is too short.', 'danger');
@@ -167,21 +165,41 @@ export default {
                 return this.sendNotification('Candidate description is too short', 'danger');
             }            
 
-            const newProjectRef = this.$firebase.database().ref('projects').push();
-            const projectId = newProjectRef.key;
-            this.project.id = projectId;
-            newProjectRef.set(this.project).then(() => {
-                this.sendNotification('Project was created!', 'success');
-                this.$router.push(`/project/${projectId}`);
-            }).catch(e => this.sendNotification(e.message, 'danger'))
-            // this.saved = true;
+            this.isEdit ? this.updateProject() : this.createProject();
         },
-        // newProject(){
-        //     this.saved = !this.saved;
-        //     this.project = this.$store.state.empty.project;
-        //     location.href = '#top';
-        // }
-    }
+    },
+    watch: {
+        '$route'(to, from) {
+            if (this.isEdit) {
+                this.project = this.$store.getters.findProjectById(to.params.id);
+                if (!this.project.candidate.skills) {
+                    this.project.candidate.skills = [];
+                }
+            } else {
+                this.project = {                
+                    details: {
+                        name: '',
+                        team: '2 people',
+                        commitment: '1 h / day',
+                        description: '',
+                        creator: this.$store.state.uid
+                    },
+                    candidate: {
+                        description: '',
+                        skills: []
+                    }
+                };
+            }           
+        }
+    },  
+    created() {
+        if (this.isEdit) {
+            this.project = this.$store.getters.findProjectById(this.$route.params.id);
+            if (!this.project.candidate.skills) {
+                this.project.candidate.skills = [];
+            }
+        }
+    },
 }
 </script>
 
