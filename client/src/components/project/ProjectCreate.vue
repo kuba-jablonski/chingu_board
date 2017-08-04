@@ -168,6 +168,30 @@ export default {
             this.isEdit ? this.updateProject() : this.createProject();
         },
     },
+    watch: {
+        '$route'(to, from) {
+            if (this.isEdit) {
+                this.project = this.$store.getters.findProjectById(to.params.id);
+                if (!this.project.candidate.skills) {
+                    this.project.candidate.skills = [];
+                }
+            } else {
+                this.project = {                
+                    details: {
+                        name: '',
+                        team: '2 people',
+                        commitment: '1 h / day',
+                        description: '',
+                        creator: this.$store.state.uid
+                    },
+                    candidate: {
+                        description: '',
+                        skills: []
+                    }
+                };
+            }           
+        }
+    },  
     created() {
         if (this.isEdit) {
             this.project = this.$store.getters.findProjectById(this.$route.params.id);
@@ -175,7 +199,7 @@ export default {
                 this.project.candidate.skills = [];
             }
         }
-    }
+    },
 }
 </script>
 
