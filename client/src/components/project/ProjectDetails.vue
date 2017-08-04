@@ -73,8 +73,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { ADD_TOAST_MESSAGE } from 'vuex-toast';
+import toast from '../../mixins/toast';
 
 export default {
     data(){
@@ -89,17 +88,8 @@ export default {
                 .find(project => project.id === this.$route.params.id);
         }
     },
+    mixins: [toast],
     methods: {
-        ...mapActions({
-            addToast: ADD_TOAST_MESSAGE
-        }),
-        sendNotification(text, type) {
-            this.addToast({
-                text,
-                type,
-                dismissAfter: 5000
-            });
-        },
         apply() {
             if (!this.$store.state.authenticated) {
                 return this.sendNotification('Must be logged in!', 'danger');
