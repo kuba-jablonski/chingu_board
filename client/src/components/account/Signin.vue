@@ -28,11 +28,6 @@
                     </p>
                 </div>
 
-                <div v-if="error.show" class="notification is-danger">
-                    <button @click="error.show = false" class="delete"></button>
-                    {{ error.message }}
-                </div>
-
                 <div class="field">
                     <p class="control">
                         <button @click="logIn" class="button is-fullwidth">
@@ -72,6 +67,7 @@
 
 <script>
 import socialLogin from '../../mixins/socialLogin';
+import toast from '../../mixins/toast';
 
 export default {
     data() {
@@ -79,10 +75,6 @@ export default {
             form: {
                 email: '',
                 password: ''
-            },
-            error: {
-                show: false,
-                message: ''
             }
         }
     },
@@ -90,12 +82,11 @@ export default {
         logIn() {
             this.$firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
                 .catch(e => {
-                    this.error.show = true;
-                    this.error.message = e.message;
+                    this.sendNotification(e.message, 'danger');
                 });
         }
     },
-    mixins: [socialLogin]
+    mixins: [socialLogin, toast]
 }
 </script>
 
