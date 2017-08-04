@@ -6,7 +6,10 @@ import { router } from '../router/router';
 
 import profile from './modules/profile';
 import projects from './modules/projects';
-// import empty from './modules/empty';
+
+// vuex-toast
+import { createModule } from 'vuex-toast';
+import 'vuex-toast/dist/vuex-toast.css' // default styles
 
 Vue.use(Vuex);
 
@@ -81,6 +84,8 @@ export default new Vuex.Store({
     modules: {
         profile,
         projects,
-        // empty
+        toast: createModule({
+            dismissInterval: 8000
+        })
     }
 });

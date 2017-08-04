@@ -3,18 +3,21 @@
         <app-nav></app-nav>
         <router-view></router-view>
         <app-footer></app-footer>
+        <toast position="ne"></toast>
     </div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
-import Home from './components/Home.vue';
+
+import { Toast } from 'vuex-toast';
 
 export default {
     components: {
         appNav: Nav,
-        appFooter: Footer
+        appFooter: Footer,
+        Toast
     },
     created() {
         this.$store.dispatch('watchAuthState');

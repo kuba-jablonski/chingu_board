@@ -73,6 +73,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { ADD_TOAST_MESSAGE } from 'vuex-toast';
+
 export default {
     data(){
         return {
@@ -80,7 +83,6 @@ export default {
             deleteConfirmed: false
         }
     },
-    props: ['projects'],
     computed: {
         project() {
             return this.$store.state.projects.projects
@@ -88,22 +90,33 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            addToast: ADD_TOAST_MESSAGE
+        }),
+        sendNotification(text, type) {
+            this.addToast({
+                text,
+                type,
+                dismissAfter: 5000
+            });
+        },
         apply() {
             if (!this.$store.state.authenticated) {
-                throw 'Must be logged in.';
+                return this.sendNotification('Must be logged in!', 'danger');
             }   
+
             if (this.$store.getters.aboutMe.chingu === "") {
-                throw 'Slack username is required.';
+                return this.sendNotification('Slack username is required.', 'danger');
             }
 
             if (this.project.details.creator === this.$store.state.uid) {
-                throw "Can't apply for own project.";
+                return this.sendNotification("Can't apply for own project.", 'danger');                
             }
 
             if (this.$store.getters.myOutgoingApplications) {
                 for (let app in this.$store.getters.myOutgoingApplications) {
                     if (this.$store.getters.myOutgoingApplications[app].project === this.project.id) {
-                        throw "Can't apply twice.";
+                        return this.sendNotification("Can't apply twice", 'danger'); 
                     }
                 }
             }
@@ -117,18 +130,31 @@ export default {
                 creatorSlack: this.project.creatorSlack,
                 status: 'Pending'
             };
-          
-            this.$firebase.database()
-                .ref(`/users/${this.project.details.creator}/incomingApplications/${this.project.id}`)
-                .set(application);
-            this.$firebase.database()
-                .ref(`/users/${this.$store.state.uid}/outgoingApplications/${this.project.id}`)
-                .set(application);
+
+            const saveToIncoming = new Promise((resolve, reject) => {
+                this.$firebase.database()
+                    .ref(`/users/${this.project.details.creator}/incomingApplications/${this.project.id}`)
+                    .set(application)
+                    .then(() => resolve())
+                    .catch(e => reject(e));
+            })
+
+            const saveToOutgoing = new Promise((resolve, reject) => {
+                this.$firebase.database()
+                    .ref(`/users/${this.$store.state.uid}/outgoingApplications/${this.project.id}`)
+                    .set(application)
+                    .then(() => resolve())
+                    .catch(e => reject(e));                    
+            });
+
+            Promise.all([saveToIncoming, saveToOutgoing])
+                .then(() => this.sendNotification('Application was sent!', 'success'))
+                .catch(e => this.sendNotification(e.message, 'error'))
         },
         confirmDelete(){
             this.deleteConfirmed = true;
             this.$firebase.database().ref('projects').child(this.$route.params.id).set(null)
-            .then(console.log('project deleted'))
+            .then(this.sendNotification('Project deleted!', 'success'))
             .then(this.$router.go(-1))
             //$router.push('/my-projects');
             .catch(function(err){
