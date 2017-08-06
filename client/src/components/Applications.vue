@@ -79,8 +79,14 @@ export default {
     },
     methods: {
         acceptApplication(appKey){
-            this.$firebase.database().ref(`users/${appKey.creator}/incomingApplications/${appKey.project}`).child('status').set('Accepted');
-            this.$firebase.database().ref(`users/${appKey.user}/outgoingApplications/${appKey.project}`).child('status').set('Accepted');
+            Promise.all([
+                this.$firebase.database().ref(`users/${appKey.creator}/incomingApplications/${appKey.project}`).child('status').set('Accepted'),
+                this.$firebase.database().ref(`users/${appKey.user}/outgoingApplications/${appKey.project}`).child('status').set('Accepted'),
+                this.$firebase.database().ref(`applications/${appKey.project}`).child('status').set('Accepted')
+            ])
+            .then(() => {
+                console.log(this.myIncomingApplications[appKey]);
+            })
         },
         declineApplication(appKey){
             this.$firebase.database().ref(`users/${appKey.creator}/incomingApplications/${appKey.project}`).child('status').set('Declined');
