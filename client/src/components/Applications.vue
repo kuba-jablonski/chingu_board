@@ -70,6 +70,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { botServer } from '../http/axios';
+import toast from '../mixins/toast';
 
 export default {
     computed: {
@@ -78,6 +79,7 @@ export default {
             'myIncomingApplications'
         ]),
     },
+    mixins: [toast],
     methods: {
         acceptApplication(appInfo){
             Promise.all([
@@ -85,11 +87,16 @@ export default {
                 this.$firebase.database().ref(`users/${appInfo.app.user}/outgoingApplications/${appInfo.appKey}`).child('status').set('Accepted'),
                 this.$firebase.database().ref(`applications/${appInfo.appKey}`).child('status').set('Accepted')
             ])
-            .then(() => botServer.post('app/accept', appInfo.app).then(res => console.log(res)));
+            .then(() => botServer.post('app/accept', appInfo.app))
+            .then(res => this.sendNotification(`Notification sent to @${appInfo.app.userSlack}`, 'success'));
         },
         declineApplication(appInfo){
-            this.$firebase.database().ref(`users/${appInfo.app.creator}/incomingApplications/${appInfo.appKey}`).child('status').set('Declined');
-            this.$firebase.database().ref(`users/${appInfo.app.user}/outgoingApplications/${appInfo.appKey}`).child('status').set('Declined');
+            Promise.all([
+                this.$firebase.database().ref(`users/${appInfo.app.creator}/incomingApplications/${appInfo.appKey}`).child('status').set('Declined'),
+                this.$firebase.database().ref(`users/${appInfo.app.user}/outgoingApplications/${appInfo.appKey}`).child('status').set('Declined'),
+                this.$firebase.database().ref(`applications/${appInfo.appKey}`).child('status').set('Declined')
+            ])
+            .then(() => botServer.post('app/decline', appInfo.app));
         }
     }
 }
