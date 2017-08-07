@@ -75,6 +75,7 @@
 
 <script>
 import toast from '../../mixins/toast';
+import { botServer } from '../../http/axios';
 
 export default {
     data(){
@@ -149,7 +150,10 @@ export default {
             });
 
             Promise.all([saveToIncoming, saveToOutgoing, saveToApplications])
-                .then(() => this.sendNotification('Application was sent!', 'success'))
+                .then(() => {
+                    this.sendNotification('Application was sent!', 'success');
+                    botServer.post('app/apply', application);
+                })
                 .catch(e => this.sendNotification(e.message, 'error'));
         },
         confirmDelete(){
