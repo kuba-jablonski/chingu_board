@@ -128,6 +128,9 @@ export default {
     mixins: [toast],
     methods: {
         addNewSkill() {
+            if (!this.addSkill.name) {
+                return this.sendNotification("Skill name is empty!", 'danger');
+            }
             const newSkill = {
                 name: this.addSkill.name,
                 required: this.addSkill.required

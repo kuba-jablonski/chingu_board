@@ -48,9 +48,7 @@ export default {
 }
 
 .project-name {
-    text-transform: uppercase;
     margin-bottom: 0;
-    color: $primary;
 }
 
 .project-subtitle {

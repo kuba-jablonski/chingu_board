@@ -1,5 +1,5 @@
 <template>
-    <div class="column divider">
+    <div class="column is-half divider">
         <p class="subtitle is-4 has-text-centered">Links
             <span class="icon">
                 <i class="fa fa-link"></i>
