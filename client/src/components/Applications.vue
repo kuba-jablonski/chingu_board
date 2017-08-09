@@ -105,6 +105,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/settings.scss';
+
+section {
+    padding: 2rem;
+} 
+
 .header {
     margin-bottom: 50px;
 }

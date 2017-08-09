@@ -23,7 +23,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/settings.scss';
-    
+
+section {
+    padding: 2rem;
+} 
+
 .is-ancestor, {
     flex-wrap: wrap;
 }
