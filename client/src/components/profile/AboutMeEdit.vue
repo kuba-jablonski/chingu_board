@@ -56,14 +56,24 @@
 </template>
 
 <script>
+import toast from '../../mixins/toast';
+
 export default {
     data() {
         return {
             aboutMe: null
         }
     },
+    mixins: [toast],
     methods: {
         save() {
+            if (!this.aboutMe.firstName || 
+                !this.aboutMe.lastName || 
+                !this.aboutMe.chingu || 
+                !this.aboutMe.livingIn ||
+                !this.aboutMe.introduction) {
+                return this.sendNotification('All fields are required!', 'danger');
+            }
             this.$firebase.database().ref(`users/${this.$store.state.uid}/aboutMe`)
                 .set(this.aboutMe);
             this.stopEdit();

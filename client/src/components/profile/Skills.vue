@@ -1,19 +1,17 @@
 <template>
-    <div class="column">
+    <div class="column is-half">
         <div class="has-text-centered">
             <p class="subtitle is-4">Skills
                 <span class="icon">
                     <i class="fa fa-superpowers"></i>
                 </span>
             </p>            
-            <div class="field is-grouped is-grouped-centered">
-                <p v-for="skill in skills" :key="skill.name" class="control">
-                    <a class="button is-static skill-item">
+            <div id="skills" class="is-flex field is-grouped is-grouped-centered">
+                <p v-for="skill in skills" :key="skill.name" class="button is-static skill-item">
                     {{ skill.name }}
                         <span class="tag" :class="skill.level">
                             {{ skill.level }}
                         </span>
-                    </a>
                 </p>
             </div>   
         </div>

@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import toast from '../../mixins/toast';
+
 export default {
     data() {
         return {
@@ -64,6 +66,7 @@ export default {
             }
         }
     },
+    mixins: [toast],
     methods: {
         stopEdit() {
             this.$store.commit('TOGGLE_EDIT', { component: 'skills', active: false });
@@ -77,6 +80,9 @@ export default {
             this.stopEdit();
         },
         addNewSkill() {
+            if (!this.addSkill.name) {
+                return this.sendNotification("Skill name is empty!", 'danger');
+            }
             const newSkill = {
                 name: this.addSkill.name,
                 level: this.addSkill.level
