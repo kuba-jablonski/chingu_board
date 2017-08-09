@@ -9,7 +9,7 @@
                             </span>
                 </h2>
                 <ul>
-                    <li v-for="app in myIncomingApplications" :key="app.id" class="media">
+                    <li v-for="(app, appKey) in myIncomingApplications" :key="appKey" class="media">
                         <div v-if="app.status === 'Accepted'" class="media-left"><a class="button is-static accepted">Accepted</a></div>
                         <div v-if="app.status === 'Declined'" class="media-left"><a class="button is-static declined">Declined</a></div>
                         <div class="media-content">
@@ -17,7 +17,7 @@
                         
                             <div class="field is-grouped" v-if="app.status === 'Pending'">
                               <p class="control">
-                                <a @click="acceptApplication(app)" class="button is-success">
+                                <a @click="acceptApplication({app, appKey})" class="button is-success">
                                     <span>Accept</span>
                                     <span class="icon is-small">
                                         <i class="fa fa-check"></i>
@@ -25,7 +25,7 @@
                                 </a>
                               </p>
                               <p class="control">
-                                <a @click="declineApplication(app)" class="button is-danger">
+                                <a @click="declineApplication({app, appKey})" class="button is-danger">
                                     <span>Decline</span>
                                     <span class="icon is-small">
                                         <i class="fa fa-times"></i>
@@ -69,7 +69,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import firebase from 'firebase';
+import { botServer } from '../http/axios';
+import toast from '../mixins/toast';
 
 export default {
     computed: {
@@ -78,14 +79,24 @@ export default {
             'myIncomingApplications'
         ]),
     },
+    mixins: [toast],
     methods: {
-        acceptApplication(appKey){
-            this.$firebase.database().ref(`users/${appKey.creator}/incomingApplications/${appKey.project}`).child('status').set('Accepted');
-            this.$firebase.database().ref(`users/${appKey.user}/outgoingApplications/${appKey.project}`).child('status').set('Accepted');
+        acceptApplication(appInfo){
+            Promise.all([
+                this.$firebase.database().ref(`users/${appInfo.app.creator}/incomingApplications/${appInfo.appKey}`).child('status').set('Accepted'),
+                this.$firebase.database().ref(`users/${appInfo.app.user}/outgoingApplications/${appInfo.appKey}`).child('status').set('Accepted'),
+                this.$firebase.database().ref(`applications/${appInfo.appKey}`).child('status').set('Accepted')
+            ])
+            .then(() => botServer.post('app/accept', appInfo.app))
+            .then(res => this.sendNotification(`Notification sent to @${appInfo.app.userSlack}`, 'success'));
         },
-        declineApplication(appKey){
-            this.$firebase.database().ref(`users/${appKey.creator}/incomingApplications/${appKey.project}`).child('status').set('Declined');
-            this.$firebase.database().ref(`users/${appKey.user}/outgoingApplications/${appKey.project}`).child('status').set('Declined');
+        declineApplication(appInfo){
+            Promise.all([
+                this.$firebase.database().ref(`users/${appInfo.app.creator}/incomingApplications/${appInfo.appKey}`).child('status').set('Declined'),
+                this.$firebase.database().ref(`users/${appInfo.app.user}/outgoingApplications/${appInfo.appKey}`).child('status').set('Declined'),
+                this.$firebase.database().ref(`applications/${appInfo.appKey}`).child('status').set('Declined')
+            ])
+            .then(() => botServer.post('app/decline', appInfo.app));
         }
     }
 }

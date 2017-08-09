@@ -75,6 +75,7 @@
 
 <script>
 import toast from '../../mixins/toast';
+import { botServer } from '../../http/axios';
 
 export default {
     data(){
@@ -122,9 +123,12 @@ export default {
                 status: 'Pending'
             };
 
+            const newAppRef = this.$firebase.database().ref(`/applications`).push();
+            const appKey = newAppRef.key;
+
             const saveToIncoming = new Promise((resolve, reject) => {
                 this.$firebase.database()
-                    .ref(`/users/${this.project.details.creator}/incomingApplications/${this.project.id}`)
+                    .ref(`/users/${this.project.details.creator}/incomingApplications/${appKey}`)
                     .set(application)
                     .then(() => resolve())
                     .catch(e => reject(e));
@@ -132,22 +136,24 @@ export default {
 
             const saveToOutgoing = new Promise((resolve, reject) => {
                 this.$firebase.database()
-                    .ref(`/users/${this.$store.state.uid}/outgoingApplications/${this.project.id}`)
+                    .ref(`/users/${this.$store.state.uid}/outgoingApplications/${appKey}`)
                     .set(application)
                     .then(() => resolve())
                     .catch(e => reject(e));                    
             });
 
             const saveToApplications = new Promise((resolve, reject) => {
-                this.$firebase.database()
-                    .ref(`/applications/${this.project.id}`)
+                newAppRef
                     .set(application)
                     .then(() => resolve())
                     .catch(e => reject(e));                    
             });
 
             Promise.all([saveToIncoming, saveToOutgoing, saveToApplications])
-                .then(() => this.sendNotification('Application was sent!', 'success'))
+                .then(() => {
+                    this.sendNotification('Application was sent!', 'success');
+                    botServer.post('app/apply', application);
+                })
                 .catch(e => this.sendNotification(e.message, 'error'));
         },
         confirmDelete(){

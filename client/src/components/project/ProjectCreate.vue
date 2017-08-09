@@ -95,6 +95,7 @@
 
 <script>
 import toast from '../../mixins/toast';
+import { botServer } from '../../http/axios';
 
 export default {
     data() {
@@ -105,7 +106,8 @@ export default {
                     team: '2 people',
                     commitment: '1 h / day',
                     description: '',
-                    creator: this.$store.state.uid
+                    creator: this.$store.state.uid,
+                    creatorSlack: this.$store.getters.aboutMe.chingu
                 },
                 candidate: {
                     description: '',
@@ -142,8 +144,9 @@ export default {
             this.project.id = projectId;
             newProjectRef.set(this.project).then(() => {
                 this.sendNotification('Project was created!', 'success');
+                botServer.post('newproject', this.project);
                 this.$router.push(`/project/${projectId}`);
-            }).catch(e => this.sendNotification(e.message, 'danger'))
+            }).catch(e => this.sendNotification(e.message, 'danger'));
         },
         updateProject() {
             this.$firebase.database().ref(`projects/${this.project.id}`)
@@ -163,7 +166,10 @@ export default {
             }            
             if (this.project.candidate.description.trim().length < 5) {
                 return this.sendNotification('Candidate description is too short', 'danger');
-            }            
+            }
+            if (!this.$store.getters.aboutMe.chingu) {
+                return this.sendNotification('Your profile must include a Slack username', 'danger');
+            }           
 
             this.isEdit ? this.updateProject() : this.createProject();
         },
