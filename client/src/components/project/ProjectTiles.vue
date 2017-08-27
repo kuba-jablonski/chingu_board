@@ -1,6 +1,5 @@
 <template>
     <div class="tile is-ancestor">
-    
         <router-link :to="`/project/${project.id}`" v-for="project in projects" :key="project.id" class="tile is-parent is-6">
             <article class="tile is-child box project-tile">
                 <h3 class="title is-4 project-name">{{ project.details.name }}</h3>
@@ -45,6 +44,7 @@ export default {
 
 .is-child:hover {
     background: $color3;
+    box-shadow: 10px 10px 10px $color1;
 }
 
 .project-name {

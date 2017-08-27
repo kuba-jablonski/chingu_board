@@ -1,6 +1,5 @@
 <template>
     <section>
-        
         <div class="columns">
             <div class="column is-half has-text-centered">
                 <p class="subtitle is-3">About me 

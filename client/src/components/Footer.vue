@@ -39,8 +39,8 @@
                     <p class="title is-6">Chingu</p>
                     <hr>
                     <ul>
-                        <li>who we are</li>
-                        <li><a href="https://chingu-cohorts.github.io/chingu-directory/">join a code cohorts</a></li>
+                        <li><router-link to="/who">who we are</router-link></li>
+                        <li><a href="https://chingu-cohorts.github.io/chingu-directory/">join a code cohort</a></li>
                         <li><a href="https://www.paypal.me/ChinguCohorts">donate</a></li>
                     </ul>
                 </div>

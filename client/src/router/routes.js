@@ -7,6 +7,7 @@ import ProjectCreate from '../components/project/ProjectCreate.vue';
 import ProjectDetails from '../components/project/ProjectDetails.vue';
 import MyProjects from '../components/MyProjects.vue';
 import Applications from '../components/Applications.vue';
+import Who from '../components/Who.vue';
 
 import store from '../store/store';
 import { router } from './router';
@@ -16,6 +17,7 @@ export const routes = [
     { path: '/projects', component: Projects },
     { path: '/signin', component: Signin },
     { path: '/signup', component: Signup },
+    { path: '/who', component: Who },
     { path: '/profile', component: Profile, 
         beforeEnter(to, from, next) {
             store.state.authenticated ? next() : router.push('/');
