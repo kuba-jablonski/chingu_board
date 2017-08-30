@@ -16,15 +16,11 @@ Vue.prototype.$firebase = firebase.initializeApp({
     // databaseURL: "https://chingu-board.firebaseio.com",
     // projectId: "chingu-board",
     
-    // apiKey: "AIzaSyDIOPUYTmuZB48e5Z-W4pqAanYLQ_eRSWo",
-    // authDomain: "boardtest-58415.firebaseapp.com",
-    // databaseURL: "https://boardtest-58415.firebaseio.com",
-    // projectId: "boardtest-58415",
-    
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    databaseURL: process.env.DATABASE_URL,
-    projectId: process.env.PROJECT_ID
+    apiKey: "AIzaSyDIOPUYTmuZB48e5Z-W4pqAanYLQ_eRSWo",
+    authDomain: "boardtest-58415.firebaseapp.com",
+    databaseURL: "https://boardtest-58415.firebaseio.com",
+    projectId: "boardtest-58415",
+
 });
 
 new Vue({
